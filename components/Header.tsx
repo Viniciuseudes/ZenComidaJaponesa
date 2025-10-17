@@ -20,7 +20,7 @@ export default function Header() {
     { name: "Quem Somos", href: "/quem-somos" },
     { name: "Restaurantes", href: "/restaurantes" },
     { name: "Cardápio", href: "/cardapio" },
-    { name: "Delivery", href: "/delivery" },
+    { name: "Dúvidas", href: "/duvidas-frequentes" },
     { name: "Franquia", href: "/franquia" },
     { name: "Eventos", href: "/eventos" },
   ];

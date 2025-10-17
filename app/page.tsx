@@ -1,19 +1,21 @@
-import ImmersiveHero from "@/components/ImmersiveHero"
-import LocationSection from "@/components/LocationSection"
-import SocialFeed from "@/components/SocialFeed"
-import LeadForm from "@/components/LeadForm"
-import PromoBanner from "@/components/PromoBanner"
-import WhatsAppButton from "@/components/WhatsAppButton"
+// app/page.tsx
+
+import ImmersiveHero from "@/components/ImmersiveHero";
+import AnniversarySection from "@/components/AnniversarySection";
+import SushiCarousel from "@/components/SushiCarousel"; // Importe o novo carrossel
+import LocationSection from "@/components/LocationSection";
+import LeadForm from "@/components/LeadForm";
+import WhatsAppButton from "@/components/WhatsAppButton";
 
 export default function Home() {
   return (
-    <main className="min-h-screen">
+    <main className="min-h-screen bg-black">
       <ImmersiveHero />
-      <PromoBanner />
+      <AnniversarySection />
+      <SushiCarousel /> {/* Adicione o carrossel aqui */}
       <LocationSection />
-      <SocialFeed />
       <LeadForm />
       <WhatsAppButton />
     </main>
-  )
+  );
 }

@@ -1,12 +1,12 @@
-"use client"
+"use client";
 
-import type React from "react"
+import type React from "react";
 
-import { useState } from "react"
-import { Button } from "@/components/ui/button"
-import { Input } from "@/components/ui/input"
-import { Textarea } from "@/components/ui/textarea"
-import { Gift, Mail, Phone, User } from "lucide-react"
+import { useState } from "react";
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { Textarea } from "@/components/ui/textarea";
+import { Gift, Mail, Phone, User } from "lucide-react";
 
 export default function LeadForm() {
   const [formData, setFormData] = useState({
@@ -15,12 +15,12 @@ export default function LeadForm() {
     phone: "",
     interest: "newsletter",
     message: "",
-  })
+  });
 
   const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault()
+    e.preventDefault();
     // Aqui seria implementada a lógica de envio com UTM tracking
-    console.log("Form submitted:", formData)
+    console.log("Form submitted:", formData);
     // Reset form
     setFormData({
       name: "",
@@ -28,15 +28,19 @@ export default function LeadForm() {
       phone: "",
       interest: "newsletter",
       message: "",
-    })
-  }
+    });
+  };
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
+  const handleChange = (
+    e: React.ChangeEvent<
+      HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement
+    >
+  ) => {
     setFormData({
       ...formData,
       [e.target.name]: e.target.value,
-    })
-  }
+    });
+  };
 
   return (
     <section
@@ -47,7 +51,9 @@ export default function LeadForm() {
         backgroundRepeat: "repeat",
       }}
     >
-      <div className="absolute inset-0 bg-red-600/90"></div>
+      {/* AQUI FOI FEITA A ALTERAÇÃO DO FUNDO */}
+      <div className="absolute inset-0 bg-gradient-to-br from-red-900/80 to-black/90"></div>
+
       <div className="container mx-auto px-4 relative z-10">
         <div className="max-w-4xl mx-auto">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
@@ -59,8 +65,8 @@ export default function LeadForm() {
               </div>
 
               <p className="text-xl mb-6 opacity-90">
-                Cadastre-se em nossa newsletter e receba ofertas exclusivas, novidades do cardápio e convites para
-                eventos especiais.
+                Cadastre-se em nossa newsletter e receba ofertas exclusivas,
+                novidades do cardápio e convites para eventos especiais.
               </p>
 
               <div className="space-y-4">
@@ -87,7 +93,9 @@ export default function LeadForm() {
             <div className="bg-white rounded-2xl p-8 text-gray-900">
               <form onSubmit={handleSubmit} className="space-y-6">
                 <div>
-                  <label className="block text-sm font-medium mb-2">Nome Completo</label>
+                  <label className="block text-sm font-medium mb-2">
+                    Nome Completo
+                  </label>
                   <div className="relative">
                     <User className="absolute left-3 top-1/2 transform -translate-y-1/2 w-5 h-5 text-gray-400" />
                     <Input
@@ -103,7 +111,9 @@ export default function LeadForm() {
                 </div>
 
                 <div>
-                  <label className="block text-sm font-medium mb-2">E-mail</label>
+                  <label className="block text-sm font-medium mb-2">
+                    E-mail
+                  </label>
                   <div className="relative">
                     <Mail className="absolute left-3 top-1/2 transform -translate-y-1/2 w-5 h-5 text-gray-400" />
                     <Input
@@ -119,7 +129,9 @@ export default function LeadForm() {
                 </div>
 
                 <div>
-                  <label className="block text-sm font-medium mb-2">WhatsApp</label>
+                  <label className="block text-sm font-medium mb-2">
+                    WhatsApp
+                  </label>
                   <div className="relative">
                     <Phone className="absolute left-3 top-1/2 transform -translate-y-1/2 w-5 h-5 text-gray-400" />
                     <Input
@@ -134,7 +146,9 @@ export default function LeadForm() {
                 </div>
 
                 <div>
-                  <label className="block text-sm font-medium mb-2">Interesse Principal</label>
+                  <label className="block text-sm font-medium mb-2">
+                    Interesse Principal
+                  </label>
                   <select
                     name="interest"
                     value={formData.interest}
@@ -143,13 +157,17 @@ export default function LeadForm() {
                   >
                     <option value="newsletter">Newsletter e Promoções</option>
                     <option value="events">Eventos e Degustações</option>
-                    <option value="franchise">Informações sobre Franquia</option>
+                    <option value="franchise">
+                      Informações sobre Franquia
+                    </option>
                     <option value="catering">Serviços de Eventos</option>
                   </select>
                 </div>
 
                 <div>
-                  <label className="block text-sm font-medium mb-2">Mensagem (Opcional)</label>
+                  <label className="block text-sm font-medium mb-2">
+                    Mensagem (Opcional)
+                  </label>
                   <Textarea
                     name="message"
                     value={formData.message}
@@ -173,7 +191,8 @@ export default function LeadForm() {
                 </Button>
 
                 <p className="text-xs text-gray-500 text-center">
-                  Ao se cadastrar, você concorda com nossos termos de uso e política de privacidade.
+                  Ao se cadastrar, você concorda com nossos termos de uso e
+                  política de privacidade.
                 </p>
               </form>
             </div>
@@ -181,5 +200,5 @@ export default function LeadForm() {
         </div>
       </div>
     </section>
-  )
+  );
 }
