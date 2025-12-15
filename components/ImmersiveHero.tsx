@@ -60,7 +60,7 @@ export default function ImmersiveHero() {
             style={{ transform: `translateY(${scrollY * 0.5}px)` }}
           >
             {/* O caminho começa com / para acessar a pasta public */}
-            <source src="/videoprincipal.mp4" type="video/mp4" />
+            <source src="/videoprincipa.mp4" type="video/mp4" />
             Seu navegador não suporta a tag de vídeo.
           </video>
 
