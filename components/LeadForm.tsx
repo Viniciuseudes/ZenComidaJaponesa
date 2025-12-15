@@ -61,7 +61,7 @@ export default function LeadForm() {
             <div>
               <div className="flex items-center space-x-3 mb-6">
                 <Gift className="w-8 h-8" />
-                <h2 className="text-4xl font-bold">Ganhe 15% OFF</h2>
+                <h2 className="text-4xl font-bold">Ganhe Ofertas</h2>
               </div>
 
               <p className="text-xl mb-6 opacity-90">
@@ -187,7 +187,7 @@ export default function LeadForm() {
                   }}
                 >
                   <div className="absolute inset-0 bg-red-600/90"></div>
-                  <span className="relative z-10">Ganhar Desconto de 15%</span>
+                  <span className="relative z-10">Receber Ofertas %</span>
                 </Button>
 
                 <p className="text-xs text-gray-500 text-center">

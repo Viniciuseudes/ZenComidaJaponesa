@@ -26,39 +26,43 @@ const eventTypes = [
   { icon: Users, title: "Confraternizações" },
 ];
 
+// Array ATUALIZADO com a propriedade "poster" para os vídeos
 const gallery = [
   {
     id: 1,
-    type: "image",
-    src: "/premium1.jpg",
-    title: "Casamento Elegante",
-    description: "Cerimônia intimista com 80 convidados",
+    type: "video",
+    src: "/ev7.MOV",
+    poster: "/ev7_poster.png", // <-- Adicione uma imagem de capa para seu vídeo
+    title: "Confraternização",
+    description: "Faça a sua confraternização aqui",
   },
   {
     id: 2,
     type: "video",
-    src: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Vi%CC%8deo_Animado_com_Efeitos_Cinematogra%CC%81ficos-HFmkql00ZJnQmTjcAZyrNveUw68SyX.mp4",
-    title: "Evento Corporativo",
-    description: "Lançamento de produto para empresa",
+    src: "/ev.MOV",
+    poster: "/ev_poster.png", // <-- Adicione uma imagem de capa para seu vídeo
+    title: "Aniversário",
+    description: "Comemoração para 50 convidados",
   },
   {
     id: 3,
     type: "image",
-    src: "/premium3.jpg",
-    title: "Detalhes do Menu",
-    description: "Pratos especiais para o seu evento",
+    src: "/ev1.JPG",
+    title: "Aniversário Familiar",
+    description: "Espaço para diversão",
   },
   {
     id: 4,
     type: "image",
-    src: "/rodizio1.jpg",
-    title: "Aniversário Familiar",
-    description: "Comemoração de 50 anos",
+    src: "/ev9.JPG",
+    title: "Evento Coorporativo",
+    description: "Crie um momento único com seus colaboradores",
   },
   {
     id: 5,
     type: "video",
-    src: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Vi%CC%8deo_Animado_com_Efeitos_Cinematogra%CC%81ficos-HFmkql00ZJnQmTjcAZyrNveUw68SyX.mp4",
+    src: "/ev6.MOV",
+    poster: "/ev6_poster.png", // <-- Adicione uma imagem de capa para seu vídeo
     title: "Making Of",
     description: "Bastidores da preparação",
   },
@@ -172,8 +176,13 @@ export default function EventosPage() {
                 className="relative group cursor-pointer rounded-xl overflow-hidden aspect-[9/16] border-2 border-gray-800 hover:border-red-500 transition-all duration-300"
                 onClick={() => setSelectedGalleryItem(item)}
               >
+                {/* LÓGICA ATUALIZADA AQUI */}
                 <Image
-                  src={item.src}
+                  src={
+                    item.type === "video" && item.poster
+                      ? item.poster
+                      : item.src
+                  }
                   alt={item.title}
                   fill
                   className="object-cover transition-transform duration-300 group-hover:scale-105"
@@ -223,6 +232,7 @@ export default function EventosPage() {
                 autoPlay
                 loop
                 muted
+                controls
                 className="w-full h-full object-cover"
               />
             )}

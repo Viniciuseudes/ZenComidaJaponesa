@@ -36,10 +36,10 @@ export default function ImmersiveHero() {
 
   return (
     <>
-      {/* --- Seção 1: Hero Principal (sem alterações) --- */}
+      {/* --- Seção 1: Hero Principal (Ajustada para Mobile) --- */}
       <section
         ref={heroRef}
-        className="relative h-screen overflow-hidden bg-black"
+        className="relative h-[70vh] md:h-screen overflow-hidden bg-black"
       >
         <div
           className="absolute inset-0 bg-black"
@@ -97,7 +97,7 @@ export default function ImmersiveHero() {
         </button>
       </section>
 
-      {/* --- Seção 2: Vídeo com Animação de Zoom (AJUSTADO) --- */}
+      {/* --- Seção 2: Vídeo com Animação de Zoom --- */}
       <section className="relative h-screen bg-black flex items-center justify-center overflow-hidden">
         <div className="absolute inset-0">
           <video

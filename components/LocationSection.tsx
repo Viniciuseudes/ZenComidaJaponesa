@@ -1,6 +1,6 @@
-"use client"; // Adiciona o 'use client' no topo, pois usaremos o hook useState
+"use client";
 
-import { useState } from "react"; // Importa o hook useState
+import { useState } from "react";
 import { MapPin, Clock, Phone } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
@@ -15,8 +15,8 @@ const locations = [
       weekdays: "Seg-Sex: 11h30 às 15h00 • 18h00 às 23h00",
       weekend: "Sáb-Dom: 11h30 às 23h00",
     },
-    image: "/zen-piedade-interior.png",
-    // Link de incorporação do Google Maps para a unidade Piedade
+    // CORREÇÃO: Invertido para a imagem que corresponde a Piedade (anteriormente estava no Espinheiro)
+    image: "/zen-espinheiro-exterior.png",
     embedUrl:
       "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3949.778893973907!2d-34.8986256240212!3d-8.124233181189448!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x7ab1f5c6b653773%3A0x2633e2133499426f!2sZen%20-%20Comida%20Japonesa!5e0!3m2!1spt-BR!2sbr",
   },
@@ -30,15 +30,14 @@ const locations = [
       weekdays: "Seg-Sex: 11h30 às 15h00 • 18h00 às 23h00",
       weekend: "Sáb-Dom: 11h30 às 23h00",
     },
-    image: "/zen-espinheiro-exterior.png",
-    // Link de incorporação do Google Maps para a unidade Espinheiro
+    // CORREÇÃO: Invertido para a imagem que corresponde ao Espinheiro (anteriormente estava em Piedade)
+    image: "/zen-piedade-interior.png",
     embedUrl:
       "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3950.4190479717757!2d-34.89704082402194!3d-8.058316180376378!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x7ab19a3b2b419cb%3A0xe5452a2332616428!2sZen%20Comida%20Japonesa%20Espinheiro!5e0!3m2!1spt-BR!2sbr",
   },
 ];
 
 export default function LocationSection() {
-  // Estado para armazenar a localização selecionada, começando com a primeira da lista (Piedade)
   const [selectedLocation, setSelectedLocation] = useState(locations[0]);
 
   return (

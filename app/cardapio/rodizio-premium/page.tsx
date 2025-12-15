@@ -27,39 +27,39 @@ const rodizioMenu: Record<string, RodizioItem[]> = {
       name: "Ebi Oriental",
       description:
         "Massa com camarão, refogado na manteiga de gengibre e molho oriental.",
-      image: "/image_3f2abc.jpg",
+      image: "/ebioriental.png",
       chef: null,
     },
     {
       name: "Ebi Love",
       description: "Camarões empanados envolvidos em lâmina de salmão.",
-      image: "/image_3f2abc.jpg",
+      image: "/ebilove.png",
       chef: null,
     },
     {
       name: "Chiri Zen",
       description: "Carpaccio de salmão com cream cheese e geleia de pimenta.",
-      image: "/image_3f2a56.jpg",
+      image: "/chirizen.png",
       chef: null,
     },
     {
       name: "Zen Maki",
       description:
         "Alho-poró grelhado envolto em lâminas de salmão maçaricadas com molho especial.",
-      image: "/image_3f2a56.jpg",
+      image: "/zenmaki.png",
       chef: null,
     },
     {
       name: "Tataki de Atum",
       description: "Atum marinado no molho shoyu, gengibre e gergelim.",
-      image: "/image_3f2a56.jpg",
+      image: "/tatakiatum.png",
       chef: null,
     },
     {
       name: "Ebi Joy",
       description:
         "Enrolado de arroz com lâmina de salmão, cream cheese e camarão maçaricado.",
-      image: "/image_3f2a56.jpg",
+      image: "/ebijoy.png",
       chef: null,
     },
   ],

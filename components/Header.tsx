@@ -49,7 +49,7 @@ export default function Header() {
             </div>
           </div>
           <div className="hidden md:block">
-            <span>Delivery disponível • Peça pelo iFood</span>
+            <span> • Delivery disponível •</span>
           </div>
         </div>
       </div>
