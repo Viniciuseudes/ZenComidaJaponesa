@@ -89,7 +89,7 @@ const values = [
 
 export default function QuemSomos() {
   const [inView, setInView] = useState(false);
-  const timelineRef = useRef<HTMLDivElement>(null);
+  const timelineRef = useRef(null);
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -113,15 +113,9 @@ export default function QuemSomos() {
 
   return (
     <main className="min-h-screen bg-black">
-      {/* Hero Section (mantida) */}
-      <section className="relative h-96 bg-black text-white">
-        <Image
-          src="/placeholder.svg?height=400&width=1200"
-          alt="História do Zen"
-          fill
-          className="object-cover opacity-50"
-        />
-        <div className="relative z-10 container mx-auto px-4 h-full flex items-center">
+      {/* Hero Section - IMAGEM REMOVIDA, APENAS FUNDO PRETO */}
+      <section className="relative h-96 bg-black text-white flex items-center">
+        <div className="container mx-auto px-4">
           <div className="max-w-2xl">
             <h1 className="text-5xl font-bold mb-6">Nossa História</h1>
             <p className="text-xl opacity-90">
@@ -185,8 +179,6 @@ export default function QuemSomos() {
           </div>
         </div>
       </section>
-
-      {/* --- SEÇÕES RESTANTES (MANTIDAS COMO ESTAVAM) --- */}
 
       {/* Values Section */}
       <section className="py-16 bg-black border-t border-gray-800">

@@ -19,27 +19,35 @@ export default function ImmersiveHero() {
   }, []);
 
   const scrollToNext = () => {
-    window.scrollTo({
-      top: window.innerHeight,
-      behavior: "smooth",
-    });
+    // Verificação de segurança adicionada aqui também, por precaução
+    if (typeof window !== "undefined") {
+      window.scrollTo({
+        top: window.innerHeight,
+        behavior: "smooth",
+      });
+    }
   };
 
-  // Calcula o progresso da rolagem na segunda seção (a do vídeo)
-  const videoSectionScrollProgress = Math.max(
-    0,
-    Math.min(
-      1,
-      (scrollY - window.innerHeight * 0.5) / (window.innerHeight * 0.5)
-    )
-  );
+  // CORREÇÃO AQUI: Inicializa com 0 para o servidor
+  let videoSectionScrollProgress = 0;
+
+  // Só faz o cálculo se a "window" existir (navegador)
+  if (typeof window !== "undefined") {
+    videoSectionScrollProgress = Math.max(
+      0,
+      Math.min(
+        1,
+        (scrollY - window.innerHeight * 0.5) / (window.innerHeight * 0.5)
+      )
+    );
+  }
 
   return (
     <>
-      {/* --- Seção 1: Hero Principal (Ajustada para Mobile) --- */}
+      {/* --- Seção 1: Hero Principal (sem alterações) --- */}
       <section
         ref={heroRef}
-        className="relative h-[70vh] md:h-screen overflow-hidden bg-black"
+        className="relative h-screen overflow-hidden bg-black"
       >
         <div
           className="absolute inset-0 bg-black"
@@ -97,7 +105,7 @@ export default function ImmersiveHero() {
         </button>
       </section>
 
-      {/* --- Seção 2: Vídeo com Animação de Zoom --- */}
+      {/* --- Seção 2: Vídeo com Animação de Zoom (AJUSTADO) --- */}
       <section className="relative h-screen bg-black flex items-center justify-center overflow-hidden">
         <div className="absolute inset-0">
           <video
