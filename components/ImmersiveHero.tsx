@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useEffect, useRef } from "react";
-import Image from "next/image";
+// import Image from "next/image"; // Removido pois não está sendo usado neste componente
 import { Button } from "@/components/ui/button";
 import { Play, ChevronDown } from "lucide-react";
 
@@ -19,7 +19,6 @@ export default function ImmersiveHero() {
   }, []);
 
   const scrollToNext = () => {
-    // Verificação de segurança adicionada aqui também, por precaução
     if (typeof window !== "undefined") {
       window.scrollTo({
         top: window.innerHeight,
@@ -28,10 +27,7 @@ export default function ImmersiveHero() {
     }
   };
 
-  // CORREÇÃO AQUI: Inicializa com 0 para o servidor
   let videoSectionScrollProgress = 0;
-
-  // Só faz o cálculo se a "window" existir (navegador)
   if (typeof window !== "undefined") {
     videoSectionScrollProgress = Math.max(
       0,
@@ -44,17 +40,37 @@ export default function ImmersiveHero() {
 
   return (
     <>
-      {/* --- Seção 1: Hero Principal (sem alterações) --- */}
+      {/* --- Seção 1: Hero Principal (COM VÍDEO DE FUNDO) --- */}
       <section
         ref={heroRef}
+        // Adicionado 'overflow-hidden' para garantir que o vídeo não vase durante o parallax
         className="relative h-screen overflow-hidden bg-black"
       >
-        <div
-          className="absolute inset-0 bg-black"
-          style={{ transform: `translateY(${scrollY * 0.5}px)` }}
-        >
-          <div className="absolute inset-0 bg-gradient-radial from-red-900/20 via-black to-black"></div>
+        {/* --- INÍCIO DA ALTERAÇÃO: Novo Background de Vídeo --- */}
+        {/* Container absoluto para o vídeo e a camada escura */}
+        <div className="absolute inset-0 w-full h-full">
+          <video
+            autoPlay
+            muted
+            loop
+            playsInline
+            // Classes para garantir responsividade e cobertura total
+            className="absolute inset-0 w-full h-full object-cover"
+            // Mantive o efeito parallax no vídeo para suavidade
+            style={{ transform: `translateY(${scrollY * 0.5}px)` }}
+          >
+            {/* O caminho começa com / para acessar a pasta public */}
+            <source src="/videoprincipal.mp4" type="video/mp4" />
+            Seu navegador não suporta a tag de vídeo.
+          </video>
+
+          {/* Camada escura (Overlay) para melhorar a leitura do texto sobre o vídeo.
+                Ajuste o 'bg-black/60' (60% opacidade) se quiser mais claro ou mais escuro */}
+          <div className="absolute inset-0 bg-black/60 z-0"></div>
         </div>
+        {/* --- FIM DA ALTERAÇÃO --- */}
+
+        {/* Conteúdo de Texto e Botões (Mantido igual, z-10 garante que fique por cima do vídeo) */}
         <div className="relative z-10 h-full flex items-center justify-center text-center text-white">
           <div className="container mx-auto px-4">
             <div
@@ -105,7 +121,7 @@ export default function ImmersiveHero() {
         </button>
       </section>
 
-      {/* --- Seção 2: Vídeo com Animação de Zoom (AJUSTADO) --- */}
+      {/* --- Seção 2: Vídeo com Animação de Zoom (Mantida igual) --- */}
       <section className="relative h-screen bg-black flex items-center justify-center overflow-hidden">
         <div className="absolute inset-0">
           <video
@@ -116,7 +132,6 @@ export default function ImmersiveHero() {
             className="w-full h-full object-cover transition-transform duration-300 ease-out"
             style={{
               filter: "brightness(0.6)",
-              // O vídeo começa um pouco afastado (scale(1)) e aproxima (scale(1.1)) conforme o usuário rola
               transform: `scale(${1 + videoSectionScrollProgress * 0.1})`,
             }}
           >
@@ -130,7 +145,6 @@ export default function ImmersiveHero() {
         <div
           className="relative z-10 text-center text-white max-w-4xl px-4 transition-opacity duration-500"
           style={{
-            // O texto só começa a aparecer quando a rolagem na seção do vídeo começa
             opacity: videoSectionScrollProgress,
           }}
         >
