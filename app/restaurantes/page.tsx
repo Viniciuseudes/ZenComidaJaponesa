@@ -435,7 +435,6 @@ export default function RestaurantesPage() {
                       }}
                     >
                       <div className="absolute inset-0 bg-red-600/90"></div>
-                      <span className="relative z-10">Reservar Mesa</span>
                     </Button>
                     <Button
                       variant="outline"

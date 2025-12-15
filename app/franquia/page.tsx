@@ -58,7 +58,7 @@ const benefits = [
 const support = [
   {
     title: "Treinamento Inicial",
-    description: "4 semanas de treinamento intensivo em nossa sede",
+    description: "Treinamento intensivo em nossa sede",
     items: [
       "Técnicas culinárias",
       "Gestão operacional",
@@ -230,62 +230,6 @@ export default function FranquiaPage() {
         </div>
       </section>
 
-      {/* Investment Section */}
-      <section className="py-16 bg-black">
-        <div className="container mx-auto px-4">
-          <div className="text-center mb-12">
-            <h2 className="text-4xl font-bold text-white mb-4">
-              Investimento e Estrutura
-            </h2>
-            <p className="text-xl text-gray-300 max-w-2xl mx-auto">
-              Transparência total sobre o investimento necessário para sua
-              franquia
-            </p>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-12">
-            {investmentData.map((item, index) => (
-              <div
-                key={index}
-                className="bg-black p-6 rounded-2xl border border-gray-700 text-center hover:shadow-xl transition-shadow"
-              >
-                <h3 className="text-lg font-semibold text-white mb-2">
-                  {item.label}
-                </h3>
-                <div className="text-3xl font-bold text-red-400 mb-2">
-                  {item.value}
-                </div>
-                <p className="text-gray-400 text-sm">{item.description}</p>
-              </div>
-            ))}
-          </div>
-
-          <div className="bg-black rounded-2xl p-8 border border-gray-700">
-            <h3 className="text-2xl font-bold text-white mb-6 text-center">
-              O que está incluso no investimento:
-            </h3>
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-              {[
-                "Taxa de franquia",
-                "Projeto arquitetônico",
-                "Equipamentos completos",
-                "Móveis e decoração",
-                "Sistema de gestão",
-                "Treinamento inicial",
-                "Material de marketing",
-                "Estoque inicial",
-                "Suporte pré-abertura",
-              ].map((item, index) => (
-                <div key={index} className="flex items-center space-x-3">
-                  <CheckCircle className="w-5 h-5 text-red-400 flex-shrink-0" />
-                  <span className="text-gray-300">{item}</span>
-                </div>
-              ))}
-            </div>
-          </div>
-        </div>
-      </section>
-
       {/* Support Section */}
       <section className="py-16 bg-black">
         <div className="container mx-auto px-4">
@@ -318,35 +262,6 @@ export default function FranquiaPage() {
                 </ul>
               </div>
             ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Video Section */}
-      <section className="py-16 bg-black">
-        <div className="container mx-auto px-4">
-          <div className="max-w-4xl mx-auto text-center">
-            <h2 className="text-4xl font-bold text-white mb-6">
-              Conheça Nossa História
-            </h2>
-            <p className="text-xl text-gray-300 mb-8">
-              Assista ao vídeo institucional e descubra como construímos uma das
-              maiores redes de culinária japonesa do Brasil
-            </p>
-
-            <div className="relative aspect-video bg-black rounded-2xl overflow-hidden border border-gray-700">
-              <Image
-                src="/placeholder.svg?height=400&width=800&text=Video+Institucional+Franquia"
-                alt="Vídeo Institucional Franquia"
-                fill
-                className="object-cover"
-              />
-              <div className="absolute inset-0 flex items-center justify-center bg-black/30">
-                <button className="w-20 h-20 bg-red-600 hover:bg-red-700 rounded-full flex items-center justify-center transition-colors shadow-2xl">
-                  <Play className="w-8 h-8 text-white ml-1" />
-                </button>
-              </div>
-            </div>
           </div>
         </div>
       </section>
