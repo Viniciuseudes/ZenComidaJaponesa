@@ -39,7 +39,7 @@ const gallery = [
   {
     id: 2,
     type: "video",
-    src: "/ev.MOV",
+    src: "",
     poster: "/ev_poster.png", // <-- Adicione uma imagem de capa para seu vídeo
     title: "Aniversário",
     description: "Comemoração para 50 convidados",

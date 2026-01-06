@@ -2,7 +2,7 @@
 
 "use client";
 
-import { useState, useRef } from "react"; // Hooks necessários
+import { useState, useRef } from "react";
 import {
   Accordion,
   AccordionContent,
@@ -10,25 +10,41 @@ import {
   AccordionTrigger,
 } from "@/components/ui/accordion";
 import { HelpCircle, PlayCircle } from "lucide-react";
+import YouTube from "react-youtube";
 
-// --- DADOS DOS VÍDEOS (STORIES) ---
-// Todos usando o mesmo vídeo para teste, conforme solicitado
+// --- DADOS DOS VÍDEOS (IDs DO YOUTUBE SHORTS) ---
 const videoStories = [
   {
     title: "Conheça o Zen",
-    videoSrc: "/zen-intro.mp4",
+    videoId: "72J0EJplfa0",
   },
   {
     title: "Nossa Adega",
-    videoSrc: "/zen-intro1.mp4",
+    videoId: "dttSYyzMdOk",
   },
   {
     title: "Condições para Crianças",
-    videoSrc: "/zen-intro2.mp4",
+    videoId: "NeYSHudvsM4",
   },
 ];
 
-// Perguntas e respostas
+// Configurações base do player
+const youtubeOpts = {
+  height: "100%",
+  width: "100%",
+  playerVars: {
+    autoplay: 0,
+    controls: 0,
+    rel: 0,
+    showinfo: 0,
+    modestbranding: 1,
+    iv_load_policy: 3,
+    fs: 0,
+    playsinline: 1,
+    loop: 1,
+  },
+};
+
 const faqs = {
   "Rodízio e Cardápio": [
     {
@@ -104,36 +120,30 @@ const faqs = {
 };
 
 export default function DuvidasFrequentesPage() {
-  // --- LÓGICA DE VÍDEO ---
-  // Guarda qual índice está tocando (0, 1 ou 2). Se null, nenhum está tocando.
   const [playingIndex, setPlayingIndex] = useState<number | null>(null);
-
-  // Referência para controlar os elementos de vídeo no DOM
-  const videoRefs = useRef<(HTMLVideoElement | null)[]>([]);
+  const playerRefs = useRef<any[]>([]);
 
   const handlePlayPause = (index: number) => {
-    const currentVideo = videoRefs.current[index];
-    const prevVideo =
-      playingIndex !== null ? videoRefs.current[playingIndex] : null;
+    const currentPlayer = playerRefs.current[index];
+    const prevPlayer =
+      playingIndex !== null ? playerRefs.current[playingIndex] : null;
 
-    if (!currentVideo) return;
+    if (!currentPlayer) return;
 
-    // Se clicou em um vídeo que já está tocando, pausa ele
     if (playingIndex === index) {
-      currentVideo.pause();
+      currentPlayer.pauseVideo();
       setPlayingIndex(null);
     } else {
-      // Se havia outro tocando, pausa o anterior
-      if (prevVideo && playingIndex !== index) {
-        prevVideo.pause();
-        // Opcional: reiniciar o vídeo anterior para o começo
-        prevVideo.currentTime = 0;
+      if (prevPlayer && playingIndex !== index) {
+        prevPlayer.pauseVideo();
       }
-
-      // Toca o novo vídeo
-      currentVideo.play();
+      currentPlayer.playVideo();
       setPlayingIndex(index);
     }
+  };
+
+  const onPlayerReady = (index: number, event: any) => {
+    playerRefs.current[index] = event.target;
   };
 
   return (
@@ -152,7 +162,7 @@ export default function DuvidasFrequentesPage() {
         </div>
       </section>
 
-      {/* --- NOVA SEÇÃO: VÍDEOS DESTAQUE (STORIES) --- */}
+      {/* --- SEÇÃO DE VÍDEOS --- */}
       <section className="py-16 border-b border-gray-800/50">
         <div className="container mx-auto px-4">
           <h2 className="text-2xl font-bold text-center mb-10 text-gray-200">
@@ -161,6 +171,14 @@ export default function DuvidasFrequentesPage() {
           <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 lg:gap-10 max-w-4xl mx-auto">
             {videoStories.map((story, index) => {
               const isPlaying = playingIndex === index;
+
+              const currentVideoOpts: any = {
+                ...youtubeOpts,
+                playerVars: {
+                  ...youtubeOpts.playerVars,
+                  playlist: story.videoId,
+                },
+              };
 
               return (
                 <div
@@ -174,24 +192,24 @@ export default function DuvidasFrequentesPage() {
                     }
                   `}
                 >
-                  <video
-                    // Associa este vídeo ao array de referências
-                    ref={(el) => {
-                      videoRefs.current[index] = el;
-                    }}
-                    src={story.videoSrc}
-                    className="w-full h-full object-cover"
-                    loop
-                    playsInline
-                    // IMPORTANTE: muted removido para ter áudio
-                    // IMPORTANTE: autoPlay removido para controle manual
-                  ></video>
+                  <div className="absolute inset-0 pointer-events-none">
+                    <YouTube
+                      videoId={story.videoId}
+                      opts={currentVideoOpts}
+                      onReady={(e: any) => onPlayerReady(index, e)}
+                      // ⬇️ NOVA TÉCNICA DE CORTE
+                      // 1. [&>iframe]:h-[115%]: Aumenta a altura do player para além do container.
+                      // 2. [&>iframe]:-translate-y-[13%]: Move o player para cima, escondendo a barra de título.
+                      // 3. [&>iframe]:object-cover: Tenta manter a proporção.
+                      className="w-full h-full [&>iframe]:w-full [&>iframe]:h-[115%] [&>iframe]:object-cover [&>iframe]:-translate-y-[13%]"
+                      onEnd={() => setPlayingIndex(null)}
+                      onPause={() => isPlaying && setPlayingIndex(null)}
+                      onPlay={() => !isPlaying && setPlayingIndex(index)}
+                    />
+                  </div>
 
-                  {/* Overlay (Sombra + Texto + Botão) 
-                      Se estiver tocando (isPlaying), a opacidade vai a 0 e fica invisível
-                  */}
                   <div
-                    className={`absolute inset-0 bg-gradient-to-t from-black via-black/20 to-transparent transition-all duration-300 
+                    className={`absolute inset-0 bg-gradient-to-t from-black via-black/20 to-transparent transition-all duration-300 z-10
                     ${isPlaying ? "opacity-0 invisible" : "opacity-100 visible"}
                   `}
                   >
@@ -200,7 +218,6 @@ export default function DuvidasFrequentesPage() {
                         {story.title}
                       </h3>
                     </div>
-                    {/* Ícone de Play Central */}
                     <div className="absolute inset-0 flex items-center justify-center">
                       <PlayCircle className="w-16 h-16 text-white/90 group-hover:text-red-500 fill-black/50 transition-colors" />
                     </div>
@@ -216,7 +233,6 @@ export default function DuvidasFrequentesPage() {
       <section className="py-24">
         <div className="container mx-auto px-4">
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-16">
-            {/* Coluna Esquerda: Categorias */}
             <div className="lg:col-span-1 sticky top-8 self-start">
               <h2 className="text-3xl font-bold text-white mb-4">Categorias</h2>
               <p className="text-gray-400 mb-6">
@@ -235,7 +251,6 @@ export default function DuvidasFrequentesPage() {
               </div>
             </div>
 
-            {/* Coluna Direita: Accordion */}
             <div className="lg:col-span-2">
               {Object.entries(faqs).map(([category, questions]) => (
                 <div
