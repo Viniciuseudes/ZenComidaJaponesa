@@ -15,17 +15,15 @@ import {
 import type React from "react";
 import { cn } from "@/lib/utils";
 
-// Tipos para o menu
+// Tipos para o menu (Preço removido)
 type MenuOption = {
   type: string;
   description?: string;
-  price: string;
 };
 
 type MenuItem = {
   name: string;
   description?: string;
-  price?: string;
   options?: MenuOption[];
   image?: string; // Propriedade de imagem para os pratos especiais
 };
@@ -41,6 +39,7 @@ type MenuData = {
 };
 
 // Dados do menu com imagens para cada categoria e para os pratos especiais
+// Todos os preços foram removidos dos dados
 const menuData: MenuData = {
   ESPECIAIS: {
     icon: Star,
@@ -50,35 +49,30 @@ const menuData: MenuData = {
         name: "Ebizen Baterá",
         description:
           "PORÇÃO 10 UNIDADES | Baterá de salmão e camarão com cream cheese, ao molho de maionese sriracha coberto com massa de tempurá.",
-        price: "R$ 32,00",
         image: "/image_4019e3.jpg",
       },
       {
         name: "Tuna Zen Fry",
         description:
           "PORÇÃO 10 UNIDADES | Atum especial empanado, regado ao molho de azeite de tomate e ervas finas.",
-        price: "R$ 29,00",
         image: "/image_4016bd.jpg",
       },
       {
         name: "Kami Zen",
         description:
           "PORÇÃO 10 UNIDADES | Banana e bacalhau desfiado, ao molho aiolli e azeite de ervas finas.",
-        price: "R$ 29,90",
         image: "/image_401713.jpg",
       },
       {
         name: "Tamago Zen",
         description:
           "PORÇÃO 8 UNIDADES | Legumes selecionados e frango empanado, enrolados com massa de tamago ao molho de maionese sriracha e molho missô.",
-        price: "R$ 29,90",
         image: "/image_40131a.jpg",
       },
       {
         name: "Kakiague",
         description:
           "PORÇÃO 4 UNIDADES | Camarão e vegetais selecionados ao molho tentsuyu cream.",
-        price: "R$ 25,00",
         image: "/image_4012de.jpg",
       },
     ],
@@ -91,37 +85,31 @@ const menuData: MenuData = {
         name: "Combinado Zen",
         description:
           "Combinado servido com 03 Lâminas de Sashimi de Salmão, 03 Joy maçaricado com geléia, 03 Tempura Roll, 04 Philadelfia de Salmão, 04 Carioca de Salmão e 03 Crock Ebi. Total: 18 Peças",
-        price: "R$ 73,00",
       },
       {
         name: "Combinado do cheff",
         description:
           "Combinado servido com 03 Philadelfia de salmão, 03 Crock ebi, 02 Niguiri de camarão, 02 Niguiri de salmão, 02 Joy maçaricado de geléia e 01 Temaki de salmão. Total: 12 peças + 01 Temaki",
-        price: "R$ 75,00",
       },
       {
         name: "Combinado Zen Concept",
         description:
           "Combinado servido com 02 Lâminas de sashimi de salmão, 02 Hot Roll, 02 Atsun Maki, 02 Joy de camarão, 02 Joy Ebi, 02 Niguiri de Salmão maçaricado e 01 Temaki Zen. Total: 12 peças + 01 Temaki",
-        price: "R$ 75,00",
       },
       {
         name: "Combinado Digital",
         description:
           "Combinado servido com 02 Joy salmão, 04 Philadelfia de salmão, 04 Niguiri de salmão e 01 Temaki de salmão. Total: 12 peças + 01 Temaki",
-        price: "R$ 73,00",
       },
       {
         name: "Combinado Melhores do Zen",
         description:
           "Combinado servido com 02 Philadelfia de Salmão, 02 Carioca de Salmão, 02 Ebi Zen Baterá, 02 Joy natural, 01 Temaki Zen e 01 Mini Ceviche. Total: 12 peças + 01 Temaki + 01 Mini Ceviche",
-        price: "R$ 86,00",
       },
       {
         name: "Combinado Jo Joy",
         description:
           "Combinado servido com 12 Joy Maçaricado com Geléia e 01 Temaki Jo Joy. Total: 12 peças + 01 Temaki",
-        price: "R$ 89,00",
       },
     ],
   },
@@ -136,82 +124,73 @@ const menuData: MenuData = {
         options: [
           {
             type: "ESPECIAL: Salmão, atum, kani, polvo e peixe branco",
-            price: "R$ 45,00",
           },
-          { type: "SALMÃO", price: "R$ 43,00" },
-          { type: "POLVO", price: "R$ 55,90" },
-          { type: "CAMARÃO", price: "R$ 43,00" },
-          { type: "PEIXE: Salmão, atum e peixe branco", price: "R$ 41,00" },
-          { type: "KANI", price: "R$ 32,00" },
-          { type: "PEPINO: Pepino com gergelim", price: "R$ 29,00" },
+          { type: "SALMÃO" },
+          { type: "POLVO" },
+          { type: "CAMARÃO" },
+          { type: "PEIXE: Salmão, atum e peixe branco" },
+          { type: "KANI" },
+          { type: "PEPINO: Pepino com gergelim" },
         ],
       },
       {
         name: "Ceviche",
         description: "Peixe e camarão cortados em cubos, marinados em limão",
-        price: "R$ 47,00",
       },
       {
         name: "Missô Shiro",
         description:
           "Sopa de pasta de soja com cubos de queijo tofu e cebolinho. Contém tempero de peixe",
-        price: "R$ 16,00",
       },
       {
         name: "Salada à Moda da Casa",
         description:
           "Legumes pré-cozidos, molho rosé, camarões refogados no azeite e champignons",
-        price: "R$ 32,00",
       },
       {
         name: "Salada Zen Trodical",
         description:
           "Folhas, manga Tommy, peito de ave defumado e molho especial de mostarda",
-        price: "R$ 24,00",
       },
       {
         name: "Guioza",
         description:
           "PORÇÃO 6 UNIDADE | Massa recheadacom acelga, preparada no vapor e selada na chapa",
-        options: [
-          { type: "CAMARÃO", price: "R$ 38,00" },
-          { type: "CARNE", price: "R$ 36,00" },
-        ],
+        options: [{ type: "CAMARÃO" }, { type: "CARNE" }],
       },
       {
         name: "Frango ao Zen",
         description: "Cubos de frango empanados, acompanhados de molho ZEN",
-        price: "R$ 26,00",
       },
       {
         name: "Pastel Zen",
         description:
           "PORÇÃO 2 UNIDADE | Massa crocante com recheio refogado na cebola com cream cheese",
         options: [
-          { type: "CAMARÃO", price: "R$ 26,00" },
-          { type: "FILÉ", price: "R$ 24,00" },
-          { type: "FRANGO", price: "R$ 24,00" },
-          { type: "CREAM CHEESE", price: "R$ 19,00" },
+          { type: "CAMARÃO" },
+          { type: "FILÉ" },
+          { type: "FRANGO" },
+          { type: "CREAM CHEESE" },
         ],
       },
       {
         name: "Harumaki",
         description: "PORÇÃO 2 UNIDADE | Massa fina crocante",
         options: [
-          { type: "CARNE COM LEGUMES", price: "R$ 23,00" },
-          { type: "CAMARÃO COM LEGUMES", price: "R$ 25,00" },
-          { type: "LEGUMES", price: "R$ 17,00" },
-          { type: "CREAM CHEESE", price: "R$ 19,00" },
+          { type: "CARNE COM LEGUMES" },
+          { type: "CAMARÃO COM LEGUMES" },
+          { type: "LEGUMES" },
+          { type: "CREAM CHEESE" },
         ],
       },
       {
         name: "Robata",
         description: "PORÇÃO 1 UNIDADE | Espetinho",
         options: [
-          { type: "CAMARÃO", price: "R$ 14,00" },
-          { type: "PEIXE (Atum / Salmão / Peixe Branco)", price: "R$ 19,00" },
-          { type: "FRUTOS DO MAR (Peixe e Camarão)", price: "R$ 16,00" },
-          { type: "SALMÃO", price: "R$ 21,00" },
+          { type: "CAMARÃO" },
+          { type: "PEIXE (Atum / Salmão / Peixe Branco)" },
+          { type: "FRUTOS DO MAR (Peixe e Camarão)" },
+          { type: "SALMÃO" },
         ],
       },
     ],
@@ -224,76 +203,71 @@ const menuData: MenuData = {
         name: "Penne Oriental",
         description:
           "Massa penne acompanhada com filé, camarão e champignon ao molho oriental",
-        price: "R$ 54,00",
       },
       {
         name: "Yakissoba",
         description:
           "Macarrão oriental, legumes grelhados, molho especial de soja e gergelim",
         options: [
-          { type: "MISTO", price: "R$ 64,00" },
-          { type: "FILÉ", price: "R$ 59,00" },
-          { type: "CAMARÃO", price: "R$ 59,00" },
-          { type: "FRANGO", price: "R$ 51,00" },
-          { type: "LEGUMES", price: "R$ 44,00" },
+          { type: "MISTO" },
+          { type: "FILÉ" },
+          { type: "CAMARÃO" },
+          { type: "FRANGO" },
+          { type: "LEGUMES" },
         ],
       },
       {
         name: "Sukiaky de Frutos do Mar",
         description:
           "Camarão, peixe, polvo, kani e legumes com macarrão, preparados com molho shoyo, realçados com vinho e arroz aromático. (Acompanha goham)",
-        price: "R$ 59,00",
       },
       {
         name: "Sukiaky de Filé",
         description:
           "Fatias finas de filé e legumes com macarrão, preparados com molho shoyo, realçados com vinho e arroz aromático. (Acompanha goham)",
-        price: "R$ 59,00",
       },
       {
         name: "Tepan Yaki",
         description:
           "Grelhado acompanhado de arroz yakimeshi ou gohan, legumes e batatas.",
         options: [
-          { type: "SALMÃO", price: "R$ 59,00" },
-          { type: "CAMARÃO", price: "R$ 56,00" },
-          { type: "ATUM", price: "R$ 56,00" },
-          { type: "PEIXE BRANCO", price: "R$ 56,00" },
-          { type: "FRANGO", price: "R$ 51,00" },
+          { type: "SALMÃO" },
+          { type: "CAMARÃO" },
+          { type: "ATUM" },
+          { type: "PEIXE BRANCO" },
+          { type: "FRANGO" },
         ],
       },
       {
         name: "Filé Zen",
         description:
           "Filé alto grelhado, acompanhado de arroz yakimeshi ou gohan, batatas e molho nas opções madeira ou mostarda.",
-        price: "R$ 64,00",
       },
       {
         name: "Tempurá",
         description:
           "PORÇÃO 8 UNIDADE | Empanados acompanhados de molho quente.",
         options: [
-          { type: "CAMARÃO", price: "R$ 69,00" },
-          { type: "MISTO", price: "R$ 64,00" },
-          { type: "PEIXE", price: "R$ 64,00" },
-          { type: "LEGUMES", price: "R$ 42,00" },
+          { type: "CAMARÃO" },
+          { type: "MISTO" },
+          { type: "PEIXE" },
+          { type: "LEGUMES" },
         ],
       },
       {
         name: "Salmão e Arte",
         description:
           "File de salmão acompanhado de legumes pré-cozidos e realçados ao molho especial, arroz e batata.",
-        price: "R$ 62,00",
       },
       {
         name: "Risoto do Chef",
         description:
           "Risoto de camarão, acompanhado de batata tepan yaki e grelhado com capa de gergelim torrado.",
         options: [
-          { type: "SALMÃO", price: "R$ 62,00" },
-          { type: "CAMARÃO", price: "R$ 59,00" },
-          { type: "ATUM", price: "R$ 57,00" },
-          { type: "PEIXE BRANCO", price: "R$ 59,00" },
+          { type: "SALMÃO" },
+          { type: "CAMARÃO" },
+          { type: "ATUM" },
+          { type: "PEIXE BRANCO" },
         ],
       },
       {
@@ -301,9 +275,9 @@ const menuData: MenuData = {
         description:
           "Arroz aromático com champignon, acompanhado de filé de peixe grelhados no azeite e grelhado com molho de camarão.",
         options: [
-          { type: "SALMÃO", price: "R$ 59,00" },
-          { type: "ATUM", price: "R$ 54,00" },
-          { type: "PEIXE BRANCO", price: "R$ 56,00" },
+          { type: "SALMÃO" },
+          { type: "ATUM" },
+          { type: "PEIXE BRANCO" },
         ],
       },
     ],
@@ -316,39 +290,32 @@ const menuData: MenuData = {
         name: "Canapé Crock",
         description:
           "Massa fina crocante, arroz, kani, cream cheese, pasta de salmão e cebolinho",
-        price: "R$ 33,00",
       },
       {
         name: "Carioca",
         description: "Salmão / Atum / Kani e Cream Cheese",
-        price: "R$ 33,00",
       },
       {
         name: "Carioca Crock Ebi",
         description:
           "Massa fina crocante, arroz, camarão, cream cheese e molho teriyaki",
-        price: "R$ 33,00",
       },
       {
         name: "Carioca Salmão com Morango",
         description: "Salmão, morango, cream cheese e molho teriyaki",
-        price: "R$ 33,00",
       },
       {
         name: "Carioca Cartola",
         description: "Doce de banana, cream cheese e canela",
-        price: "R$ 33,00",
       },
       {
         name: "Carioca Romeu e Julieta",
         description: "Doce de goiaba, cream cheese e canela",
-        price: "R$ 33,00",
       },
       {
         name: "Paulista",
         description:
           "Pasta especial de atum com maionese, molho agridoce, cebolinho e gergelim",
-        price: "R$ 33,00",
       },
     ],
   },
@@ -359,75 +326,61 @@ const menuData: MenuData = {
       {
         name: "Philadelfia",
         description: "Atum / Salmão / Skin / Kani, Morango e cream cheese",
-        price: "R$ 22,00",
       },
       {
         name: "Tempurá Roll",
         description: "Camarão empanado e cream cheese",
-        price: "R$ 22,00",
       },
       {
         name: "Tekkamaki",
         description: "Atum / Salmão / Kani",
-        price: "R$ 18,00",
       },
       {
         name: "Canamaki",
         description: "Pasta de atum / Salmão / Kani",
-        price: "R$ 18,00",
       },
       {
         name: "Acelcamaki",
         description:
           "Enrolado em acelga, recheado com maionese, salmão e cebolinho",
-        price: "R$ 17,00",
       },
       {
         name: "Califórnia Uramaki",
         description: "Kani, pepino e manga",
-        price: "R$ 22,00",
       },
       {
         name: "Cheese Crocante Cebola",
         description: "Cebola triturada empanada e cream cheese",
-        price: "R$ 22,00",
       },
       {
         name: "Cheese Crocante Alho",
         description: "Alho triturado empanado e cream cheese",
-        price: "R$ 22,00",
       },
       {
         name: "Uramaki Zen",
         description: "Cream cheese, casca de camarão crocante e molho teriyaki",
-        price: "R$ 22,00",
       },
       {
         name: "Uramaki Pasta de Atum",
         description: "Atum cozido, maionese e cebolinho",
-        price: "R$ 22,00",
       },
       {
         name: "Uramaki Joi",
         description: "Salmão, maionese e cebolinho",
-        price: "R$ 22,00",
       },
       {
         name: "Uramaki Tae",
         description: "Salmão, atum, cebolinho, cheddar e molho picante",
-        price: "R$ 22,00",
       },
       {
         name: "Hot Roll",
         description:
           "Empanado recheado com cream cheese, camarão, kani, salmão e cebolinho",
-        price: "R$ 43,00",
       },
       {
         name: "Jo-Joi",
         description:
           "Enrolados com lâmina de salmão, coberto com pasta de salmão, cebolinho e maionese",
-        price: "R$ 45,00",
       },
       {
         name: "Joi Maçaricado",
@@ -436,13 +389,11 @@ const menuData: MenuData = {
             type: "Camarão",
             description:
               "Enrolado de arroz, envolvida com lâmina de salmão, maçaricado e coberto com cream cheese, camarão, cebolinho, gergelim e molho teriyaki",
-            price: "R$ 59,00",
           },
           {
             type: "Geleia",
             description:
               "Enrolado de arroz, envolvida com lâmina de salmão, maçaricado e coberto com pasta de peixes, geleia de damasco, cebolinho, gergelim e molho teriyaki",
-            price: "R$ 56,00",
           },
         ],
       },
@@ -455,40 +406,39 @@ const menuData: MenuData = {
       {
         name: "Dupla de Niguiris",
         options: [
-          { type: "POLVO", price: "R$ 21,00" },
-          { type: "CAMARÃO", price: "R$ 16,00" },
+          { type: "POLVO" },
+          { type: "CAMARÃO" },
           {
             type: "HOT POLAR",
             description:
               "Peixe branco grelhado, queijo cheddar e molho levemente picante",
-            price: "R$ 16,00",
           },
-          { type: "SALMÃO", price: "R$ 16,00" },
-          { type: "ATUM", price: "R$ 15,00" },
-          { type: "PEIXE BRANCO", price: "R$ 15,00" },
-          { type: "KANI", price: "R$ 11,00" },
-          { type: "PEIXE BRANCO GRELHADO", price: "R$ 16,00" },
-          { type: "SKIN", price: "R$ 11,00" },
+          { type: "SALMÃO" },
+          { type: "ATUM" },
+          { type: "PEIXE BRANCO" },
+          { type: "KANI" },
+          { type: "PEIXE BRANCO GRELHADO" },
+          { type: "SKIN" },
         ],
       },
       {
         name: "Sashimi | PORÇÃO 06 UNIDADE",
         options: [
-          { type: "POLVO", price: "R$ 34,00" },
-          { type: "CAMARÃO", price: "R$ 25,00" },
-          { type: "SALMÃO", price: "R$ 29,00" },
-          { type: "ATUM", price: "R$ 25,00" },
-          { type: "PEIXE BRANCO", price: "R$ 25,00" },
-          { type: "KANI", price: "R$ 21,00" },
+          { type: "POLVO" },
+          { type: "CAMARÃO" },
+          { type: "SALMÃO" },
+          { type: "ATUM" },
+          { type: "PEIXE BRANCO" },
+          { type: "KANI" },
         ],
       },
       {
         name: "Sashimi Maçaricado | PORÇÃO 12 UNIDADE",
         description: "Fatias de peixes maçaricados com molho especial",
         options: [
-          { type: "SALMÃO", price: "R$ 53,00" },
-          { type: "ATUM", price: "R$ 51,00" },
-          { type: "PEIXE BRANCO", price: "R$ 51,00" },
+          { type: "SALMÃO" },
+          { type: "ATUM" },
+          { type: "PEIXE BRANCO" },
         ],
       },
     ],
@@ -501,100 +451,82 @@ const menuData: MenuData = {
         name: "Temaki Zen",
         description:
           "Rechado com pasta especial de salmão, camarão empanado, cebolinho, cream cheese, molho teriyaki e gergelim",
-        price: "R$ 29,00",
       },
       {
         name: "Temaki Ebi Skin",
         description:
           "Recheado com casca de camarão crocante, cream cheese e molho teriyaki",
-        price: "R$ 18,00",
       },
       {
         name: "Temaki Cheese Crocante Alho",
         description: "Alho triturado empanado e cream cheese",
-        price: "R$ 18,00",
       },
       {
         name: "Temaki Cheese Crocante Cebola",
         description: "Cebola empanada e cream cheese",
-        price: "R$ 18,00",
       },
       {
         name: "Temaki Califórnia",
         description: "Recheado com kani, pepino e manga",
-        price: "R$ 18,00",
       },
       {
         name: "Temaki Vegetariano",
         description: "Recheado com legumes grelhados",
-        price: "R$ 18,00",
       },
       {
         name: "Temaki Jo-Joi",
         description:
           "Recheado com pasta de salmão com maionese, cebolinho e gergelim",
-        price: "R$ 29,00",
       },
       {
         name: "Temaki Peixe Branco Grelhado",
         description:
           "Recheado com peixe grelhado, cream cheese e molho teriyaki",
-        price: "R$ 22,00",
       },
       {
         name: "Temaki Paulista",
         description:
           "Massa fina crocante, recheada com pasta de atum cozido com maionese, coberto com molho agridoce, cebolinho e gergelim",
-        price: "R$ 22,00",
       },
       {
         name: "Temaki Romeu e Julieta",
         description:
           "Massa fina crocante, arroz, cream cheese, doce de goiaba e canela",
-        price: "R$ 18,00",
       },
       {
         name: "Temaki Cartola",
         description:
           "Massa fina crocante, recheada com doce de banana, canela e cream cheese",
-        price: "R$ 18,00",
       },
       {
         name: "Temaki Salmão Fruit",
         description:
           "Massa fina crocante, recheada com queijo cheddar, pasta de salmão com maionese e cebolinho, fatias de morango, kiwi e molho teriyaki",
-        price: "R$ 22,00",
       },
       {
         name: "Temaki Salmão",
         description: "Opcional: Cream cheese",
-        price: "R$ 25,00",
       },
       {
         name: "Temaki Atum",
         description: "Opcional: Cream cheese",
-        price: "R$ 22,00",
       },
       {
         name: "Temaki Peixe Branco",
         description: "Opcional: Cream cheese",
-        price: "R$ 18,00",
       },
       {
         name: "Temaki Kani Kama",
         description: "Opcional: Cream cheese",
-        price: "R$ 18,00",
       },
       {
         name: "Temaki Camarão",
         description: "Opcional: Cream cheese",
-        price: "R$ 22,00",
       },
       {
         name: "Temaki Skin Philadelfia",
         description:
           "Recheado com pele de salmão grelhada, cream cheese e molho teriyaki",
-        price: "R$ 18,00",
       },
     ],
   },
@@ -691,9 +623,7 @@ export default function ALaCartePage() {
                           {item.name}
                         </h4>
                         <p className="text-gray-400 mb-4">{item.description}</p>
-                        <p className="text-3xl font-semibold text-red-500">
-                          {item.price}
-                        </p>
+                        {/* Preço removido aqui */}
                       </div>
                     </div>
                   ))}
@@ -732,11 +662,7 @@ export default function ALaCartePage() {
                               </p>
                             )}
                           </div>
-                          {item.price && (
-                            <p className="text-xl font-semibold text-gray-300 flex-shrink-0">
-                              {item.price}
-                            </p>
-                          )}
+                          {/* Preço removido aqui */}
                         </div>
                         {item.options && (
                           <div className="mt-3 space-y-2">
@@ -753,9 +679,7 @@ export default function ALaCartePage() {
                                     </p>
                                   )}
                                 </div>
-                                <p className="text-gray-300 font-medium">
-                                  {option.price}
-                                </p>
+                                {/* Preço da opção removido aqui */}
                               </div>
                             ))}
                           </div>
