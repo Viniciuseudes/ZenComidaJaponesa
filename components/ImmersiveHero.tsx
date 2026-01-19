@@ -1,9 +1,17 @@
 "use client";
 
 import { useState, useEffect, useRef } from "react";
-// import Image from "next/image"; // Removido pois não está sendo usado neste componente
-import { Button } from "@/components/ui/button";
+// import Image from "next/image";
+import Link from "next/link";
+import { Button, buttonVariants } from "@/components/ui/button"; // Importando buttonVariants
 import { Play, ChevronDown } from "lucide-react";
+import { cn } from "@/lib/utils"; // Importando cn para mesclar classes
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu";
 
 export default function ImmersiveHero() {
   const [scrollY, setScrollY] = useState(0);
@@ -33,8 +41,8 @@ export default function ImmersiveHero() {
       0,
       Math.min(
         1,
-        (scrollY - window.innerHeight * 0.5) / (window.innerHeight * 0.5)
-      )
+        (scrollY - window.innerHeight * 0.5) / (window.innerHeight * 0.5),
+      ),
     );
   }
 
@@ -43,34 +51,25 @@ export default function ImmersiveHero() {
       {/* --- Seção 1: Hero Principal (COM VÍDEO DE FUNDO) --- */}
       <section
         ref={heroRef}
-        // Adicionado 'overflow-hidden' para garantir que o vídeo não vase durante o parallax
         className="relative h-screen overflow-hidden bg-black"
       >
-        {/* --- INÍCIO DA ALTERAÇÃO: Novo Background de Vídeo --- */}
-        {/* Container absoluto para o vídeo e a camada escura */}
+        {/* Background de Vídeo */}
         <div className="absolute inset-0 w-full h-full">
           <video
             autoPlay
             muted
             loop
             playsInline
-            // Classes para garantir responsividade e cobertura total
             className="absolute inset-0 w-full h-full object-cover"
-            // Mantive o efeito parallax no vídeo para suavidade
             style={{ transform: `translateY(${scrollY * 0.5}px)` }}
           >
-            {/* O caminho começa com / para acessar a pasta public */}
             <source src="/videoprincipa.mp4" type="video/mp4" />
             Seu navegador não suporta a tag de vídeo.
           </video>
-
-          {/* Camada escura (Overlay) para melhorar a leitura do texto sobre o vídeo.
-                Ajuste o 'bg-black/60' (60% opacidade) se quiser mais claro ou mais escuro */}
           <div className="absolute inset-0 bg-black/60 z-0"></div>
         </div>
-        {/* --- FIM DA ALTERAÇÃO --- */}
 
-        {/* Conteúdo de Texto e Botões (Mantido igual, z-10 garante que fique por cima do vídeo) */}
+        {/* Conteúdo */}
         <div className="relative z-10 h-full flex items-center justify-center text-center text-white">
           <div className="container mx-auto px-4">
             <div
@@ -88,28 +87,67 @@ export default function ImmersiveHero() {
                 Tradição milenar em cada prato. Descubra a autêntica culinária
                 japonesa.
               </p>
-              <div className="flex flex-col sm:flex-row gap-6 justify-center">
-                <Button
-                  size="lg"
-                  className="text-white text-lg px-8 py-4 shadow-2xl relative overflow-hidden"
-                  style={{
-                    backgroundImage: "url('/sushi-pattern-bg.png')",
-                    backgroundSize: "400px 400px",
-                    backgroundRepeat: "repeat",
-                  }}
-                >
-                  <div className="absolute inset-0 bg-red-600/90"></div>
-                  <span className="relative z-10">Fazer Pedido</span>
-                </Button>
-                <Button
-                  size="lg"
-                  variant="outline"
-                  className="border-2 border-white/80 text-white hover:bg-white hover:text-gray-900 text-lg px-8 py-4 bg-black/20 backdrop-blur-sm"
-                >
-                  <Play className="w-5 h-5 mr-2" />
-                  Ver Cardápio
-                </Button>
+
+              {/* --- BOTÕES FUNCIONAIS (CORRIGIDOS) --- */}
+              <div className="flex flex-col sm:flex-row gap-6 justify-center items-center">
+                {/* 1. Botão Fazer Pedido (TÉCNICA BLINDADA: Sem asChild) */}
+                <DropdownMenu modal={false}>
+                  <DropdownMenuTrigger
+                    className={cn(
+                      // Usamos buttonVariants para pegar o estilo base de botão do shadcn
+                      buttonVariants({ size: "lg" }),
+                      // Adicionamos as classes personalizadas do seu projeto
+                      "text-white text-lg px-8 py-4 shadow-2xl relative overflow-hidden w-full sm:w-auto min-w-[200px] cursor-pointer h-auto border-none",
+                    )}
+                    style={{
+                      backgroundImage: "url('/sushi-pattern-bg.png')",
+                      backgroundSize: "400px 400px",
+                      backgroundRepeat: "repeat",
+                    }}
+                  >
+                    <div className="absolute inset-0 bg-red-600/90 pointer-events-none"></div>
+                    <span className="relative z-10 flex items-center gap-2">
+                      Fazer Pedido <ChevronDown className="w-4 h-4" />
+                    </span>
+                  </DropdownMenuTrigger>
+
+                  <DropdownMenuContent className="bg-black border-gray-700 text-white z-50 min-w-[200px]">
+                    <DropdownMenuItem asChild>
+                      <a
+                        href="https://loja.neemo.com.br/zencomidajaponesa"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="cursor-pointer w-full py-2 hover:bg-gray-800 focus:bg-gray-800 rounded-sm px-2 flex"
+                      >
+                        📍 Zona Norte
+                      </a>
+                    </DropdownMenuItem>
+                    <DropdownMenuItem asChild>
+                      <a
+                        href="https://loja.neemo.com.br/zencomidajaponesa-boaviagem"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="cursor-pointer w-full py-2 hover:bg-gray-800 focus:bg-gray-800 rounded-sm px-2 flex"
+                      >
+                        📍 Zona Sul
+                      </a>
+                    </DropdownMenuItem>
+                  </DropdownMenuContent>
+                </DropdownMenu>
+
+                {/* 2. Botão Ver Cardápio */}
+                <Link href="/cardapio" className="w-full sm:w-auto">
+                  <Button
+                    size="lg"
+                    variant="outline"
+                    className="w-full border-2 border-white/80 text-white hover:bg-white hover:text-gray-900 text-lg px-8 py-4 bg-black/20 backdrop-blur-sm min-w-[200px] h-auto"
+                  >
+                    <Play className="w-5 h-5 mr-2" />
+                    Ver Cardápio
+                  </Button>
+                </Link>
               </div>
+              {/* --- FIM DOS BOTÕES --- */}
             </div>
           </div>
         </div>
@@ -121,7 +159,7 @@ export default function ImmersiveHero() {
         </button>
       </section>
 
-      {/* --- Seção 2: Vídeo com Animação de Zoom (Mantida igual) --- */}
+      {/* --- Seção 2: Vídeo com Animação de Zoom --- */}
       <section className="relative h-screen bg-black flex items-center justify-center overflow-hidden">
         <div className="absolute inset-0">
           <video

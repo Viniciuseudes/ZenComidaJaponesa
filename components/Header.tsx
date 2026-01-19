@@ -4,7 +4,8 @@ import { useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { Menu, X, Phone, MapPin } from "lucide-react";
-import { Button } from "@/components/ui/button";
+import { Button, buttonVariants } from "@/components/ui/button"; // Importando buttonVariants
+import { cn } from "@/lib/utils"; // Importando utilitário de classes
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -82,52 +83,55 @@ export default function Header() {
             ))}
           </nav>
 
-          {/* CTA Buttons - Desktop (SOLUÇÃO DEFINITIVA) */}
+          {/* CTA Buttons - Desktop (CORRIGIDO E OTIMIZADO) */}
           <div className="hidden md:flex items-center space-x-4">
-            <DropdownMenu>
-              <DropdownMenuTrigger asChild>
-                <Button
-                  variant="outline"
-                  className="border-red-500 text-red-400 hover:bg-red-500 hover:text-white bg-transparent"
-                >
-                  Fazer Pedido
-                </Button>
+            {/* FIX TÉCNICO:
+               1. Removido 'asChild' para evitar conflito de Ref.
+               2. Usamos 'modal={false}' para não travar o scroll ou interações.
+               3. Aplicamos as classes do botão diretamente no Trigger.
+            */}
+            <DropdownMenu modal={false}>
+              <DropdownMenuTrigger
+                className={cn(
+                  buttonVariants({ variant: "outline" }),
+                  "border-red-500 text-red-400 hover:bg-red-500 hover:text-white bg-transparent transition-all duration-200 cursor-pointer outline-none select-none",
+                )}
+              >
+                Fazer Pedido
               </DropdownMenuTrigger>
-              <DropdownMenuContent className="bg-black border-gray-700 text-white">
-                <DropdownMenuItem asChild>
+
+              <DropdownMenuContent
+                className="bg-black border-gray-700 text-white z-[100] mt-2 min-w-[150px]"
+                align="end"
+              >
+                <DropdownMenuItem
+                  asChild
+                  className="focus:bg-gray-800 focus:text-white cursor-pointer"
+                >
                   <a
                     href="https://loja.neemo.com.br/zencomidajaponesa"
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="cursor-pointer hover:!bg-gray-700"
+                    className="w-full flex items-center py-2"
                   >
                     Zona Norte
                   </a>
                 </DropdownMenuItem>
-                <DropdownMenuItem asChild>
+                <DropdownMenuItem
+                  asChild
+                  className="focus:bg-gray-800 focus:text-white cursor-pointer"
+                >
                   <a
                     href="https://loja.neemo.com.br/zencomidajaponesa-boaviagem"
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="cursor-pointer hover:!bg-gray-700"
+                    className="w-full flex items-center py-2"
                   >
                     Zona Sul
                   </a>
                 </DropdownMenuItem>
               </DropdownMenuContent>
             </DropdownMenu>
-
-            <Button
-              className="text-white shadow-lg relative overflow-hidden"
-              style={{
-                backgroundImage: "url('/sushi-pattern-bg.png')",
-                backgroundSize: "300px 300px",
-                backgroundRepeat: "repeat",
-              }}
-            >
-              <div className="absolute inset-0 bg-red-600/90"></div>
-              <span className="relative z-10">Reservar Mesa</span>
-            </Button>
           </div>
 
           {/* Mobile Menu Button */}
@@ -184,17 +188,6 @@ export default function Header() {
                     Pedido - Zona Sul
                   </Button>
                 </a>
-                <Button
-                  className="text-white shadow-lg relative overflow-hidden"
-                  style={{
-                    backgroundImage: "url('/sushi-pattern-bg.png')",
-                    backgroundSize: "300px 300px",
-                    backgroundRepeat: "repeat",
-                  }}
-                >
-                  <div className="absolute inset-0 bg-red-600/90"></div>
-                  <span className="relative z-10">Reservar Mesa</span>
-                </Button>
               </div>
             </nav>
           </div>

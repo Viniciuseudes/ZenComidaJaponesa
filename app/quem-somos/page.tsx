@@ -1,7 +1,6 @@
 "use client";
 
 import { useState, useEffect, useRef } from "react";
-import Image from "next/image";
 import {
   Users,
   Award,
@@ -13,7 +12,6 @@ import {
   MapPin,
   Shield,
   Crown,
-  Play,
 } from "lucide-react";
 
 // Os dados da nova linha do tempo, baseados na sua história
@@ -99,7 +97,7 @@ export default function QuemSomos() {
           observer.disconnect();
         }
       },
-      { threshold: 0.1 }
+      { threshold: 0.1 },
     );
 
     if (timelineRef.current) {
@@ -206,34 +204,6 @@ export default function QuemSomos() {
                 </div>
               );
             })}
-          </div>
-        </div>
-      </section>
-
-      {/* Video Section */}
-      <section className="py-16 bg-black">
-        <div className="container mx-auto px-4">
-          <div className="max-w-4xl mx-auto text-center">
-            <h2 className="text-4xl font-bold text-white mb-6">
-              Conheça Nossa Essência
-            </h2>
-            <p className="text-xl text-gray-400 mb-8">
-              Assista ao vídeo e descubra como mantemos viva a tradição da
-              culinária japonesa.
-            </p>
-            <div className="relative aspect-video bg-gray-800 rounded-2xl overflow-hidden shadow-2xl">
-              <Image
-                src="/placeholder.svg?height=400&width=800"
-                alt="Vídeo Institucional"
-                fill
-                className="object-cover"
-              />
-              <div className="absolute inset-0 flex items-center justify-center bg-black/40">
-                <button className="w-20 h-20 bg-red-600 hover:bg-red-700 rounded-full flex items-center justify-center transition-colors">
-                  <Play className="w-8 h-8 text-white ml-1" />
-                </button>
-              </div>
-            </div>
           </div>
         </div>
       </section>
