@@ -195,7 +195,7 @@ const rodizioMenu: Record<string, RodizioItem[]> = {
     {
       name: "Canapé Crock",
       description: "Roll crocante de kani, pasta de peixe e cebolinha.",
-      image: "/canapecrock.jpg",
+      image: "/canape.jpg",
     },
     {
       name: "Crock Ebi",
@@ -205,7 +205,7 @@ const rodizioMenu: Record<string, RodizioItem[]> = {
     {
       name: "Paulista",
       description: "Pasta de peixe, molho agridoce, cebolinha e gergelim.",
-      image: "/image_3f44a3.jpg",
+      image: "/paul.jpg",
     },
     {
       name: "Tuna Zen Fry",
