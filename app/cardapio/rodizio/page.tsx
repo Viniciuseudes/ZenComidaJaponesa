@@ -211,13 +211,13 @@ const rodizioMenu: Record<string, RodizioItem[]> = {
       name: "Tuna Zen Fry",
       description:
         "Atum empanado regado com teriyaki, azeite de tomate e ervas finas.",
-      image: "/image_3f9714.jpg",
+      image: "/zenfry.jpg",
     },
     {
       name: "Ebi Zen Baterá",
       description:
         "Baterá de salmão, camarão, cream cheese, maionese de pimenta sriracha e farofa de panko.",
-      image: "/image_3f9714.jpg",
+      image: "/batera.jpg",
     },
     {
       name: "Atsumaki",

@@ -49,19 +49,19 @@ const menuData: MenuData = {
         name: "Ebizen Baterá",
         description:
           "PORÇÃO 10 UNIDADES | Baterá de salmão e camarão com cream cheese, ao molho de maionese sriracha coberto com massa de tempurá.",
-        image: "/image_4019e3.jpg",
+        image: "/batera.jpg",
       },
       {
         name: "Tuna Zen Fry",
         description:
           "PORÇÃO 10 UNIDADES | Atum especial empanado, regado ao molho de azeite de tomate e ervas finas.",
-        image: "/image_4016bd.jpg",
+        image: "/zenfry.jpg",
       },
       {
         name: "Kami Zen",
         description:
           "PORÇÃO 10 UNIDADES | Banana e bacalhau desfiado, ao molho aiolli e azeite de ervas finas.",
-        image: "/image_401713.jpg",
+        image: "/KAMI.jpg",
       },
       {
         name: "Tamago Zen",
@@ -569,7 +569,7 @@ export default function ALaCartePage() {
                     "px-6 py-3 rounded-full font-semibold transition-colors duration-300 ease-in-out",
                     selectedCategory === category
                       ? "bg-red-600 text-white shadow-lg"
-                      : "bg-gray-800 text-gray-300 hover:bg-gray-700 hover:text-white"
+                      : "bg-gray-800 text-gray-300 hover:bg-gray-700 hover:text-white",
                   )}
                 >
                   {category}
@@ -601,7 +601,7 @@ export default function ALaCartePage() {
                       <div
                         className={cn(
                           "relative w-full aspect-[4/3] rounded-lg overflow-hidden shadow-2xl shadow-red-900/10",
-                          index % 2 === 1 && "md:order-2"
+                          index % 2 === 1 && "md:order-2",
                         )}
                       >
                         {item.image && (
@@ -616,7 +616,7 @@ export default function ALaCartePage() {
                       <div
                         className={cn(
                           "flex flex-col",
-                          index % 2 === 1 && "md:order-1"
+                          index % 2 === 1 && "md:order-1",
                         )}
                       >
                         <h4 className="text-3xl font-bold text-white mb-3">

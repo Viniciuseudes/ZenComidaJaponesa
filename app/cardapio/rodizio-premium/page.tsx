@@ -22,7 +22,7 @@ const rodizioMenu: Record<string, RodizioItem[]> = {
       name: "Tuna Goma",
       description:
         "Atum selado em crosta de gergelim, com crocante de panko e cebola crispy, finalizado com trio de molhos.",
-      image: "/image_3f2abc.jpg",
+      image: "/tunagoma.jpg",
       chef: null,
     },
     {
@@ -285,14 +285,14 @@ const rodizioMenu: Record<string, RodizioItem[]> = {
       name: "Tuna Zen Fry",
       description:
         "Atum empanado regado com teriyaki, azeite de tomate e ervas finas.",
-      image: "/image_3f9714.jpg",
+      image: "/zenfry.jpg",
       chef: null,
     },
     {
       name: "Ebi Zen Baterá",
       description:
         "Baterá de salmão, camarão, cream cheese, maionese de pimenta sriracha e farofa de panko.",
-      image: "/image_3f9714.jpg",
+      image: "/batera.jpg",
       chef: null,
     },
     {
@@ -311,13 +311,13 @@ const rodizioMenu: Record<string, RodizioItem[]> = {
     {
       name: "Carioca de Salmão e Morango",
       description: "Roll empanado de salmão, morango e cream cheese.",
-      image: "/image_3f38de.jpg",
+      image: "/salmorango.jpg",
       chef: null,
     },
     {
       name: "Romeu e Julieta",
       description: "Roll empanado de goiabada e cream cheese.",
-      image: "/image_3f38de.jpg",
+      image: "/romeu.jpg",
       chef: null,
     },
     {
