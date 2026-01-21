@@ -1,11 +1,25 @@
-"use client"
+"use client";
 
-import { useState, useEffect, useRef } from "react"
-import Image from "next/image"
-import { Button } from "@/components/ui/button"
-import { Star, Heart, ChevronLeft, ChevronRight } from "lucide-react"
+import { useState, useEffect, useRef } from "react";
+import Image from "next/image";
+import { Button } from "@/components/ui/button";
+import { Star, Heart, ChevronLeft, ChevronRight } from "lucide-react";
 
-const allFeaturedDishes = [
+// 1. Criamos uma interface para definir EXATAMENTE o que é um prato
+// Isso impede que o TypeScript fique confuso com campos nulos ou ausentes
+interface FeaturedDish {
+  id: number;
+  name: string;
+  description: string;
+  price: string;
+  originalPrice?: string | null; // Pode ser string, null ou não existir (opcional)
+  image: string;
+  rating: number;
+  isPopular: boolean;
+}
+
+// 2. Aplicamos a tipagem no array (: FeaturedDish[])
+const allFeaturedDishes: FeaturedDish[] = [
   {
     id: 1,
     name: "Temaki Zen",
@@ -20,7 +34,8 @@ const allFeaturedDishes = [
   {
     id: 2,
     name: "Ceviche Zen",
-    description: "Mix de peixes, camarão e kani temperados em marinada cítrica.",
+    description:
+      "Mix de peixes, camarão e kani temperados em marinada cítrica.",
     price: "R$ 45,90",
     originalPrice: null,
     image: "/ceviche-zen.png",
@@ -47,6 +62,7 @@ const allFeaturedDishes = [
     image: "/joy-damasco.png",
     rating: 4.9,
     isPopular: false,
+    originalPrice: null, // Adicionado para consistência
   },
   {
     id: 5,
@@ -56,6 +72,7 @@ const allFeaturedDishes = [
     image: "/placeholder.svg?height=300&width=400&text=Ramen+Tradicional",
     rating: 4.6,
     isPopular: false,
+    originalPrice: null, // Adicionado para consistência
   },
   {
     id: 6,
@@ -65,21 +82,22 @@ const allFeaturedDishes = [
     image: "/placeholder.svg?height=300&width=400&text=Combo+Vegetariano",
     rating: 4.5,
     isPopular: false,
+    originalPrice: null, // Adicionado para consistência
   },
-]
+];
 
 // Limit to 3 featured dishes for the carousel
-const featuredDishes = allFeaturedDishes.slice(0, 3)
+const featuredDishes = allFeaturedDishes.slice(0, 3);
 
 export default function FeaturedDishes() {
-  const [currentIndex, setCurrentIndex] = useState(0)
-  const [isTransitioning, setIsTransitioning] = useState(true)
-  const carouselRef = useRef<HTMLDivElement>(null)
+  const [currentIndex, setCurrentIndex] = useState(0);
+  const [isTransitioning, setIsTransitioning] = useState(true);
+  const carouselRef = useRef<HTMLDivElement>(null);
 
   // Duplicate dishes for infinite loop effect
-  const carouselItems = [...featuredDishes, ...featuredDishes] // [d1, d2, d3, d1, d2, d3]
+  const carouselItems = [...featuredDishes, ...featuredDishes]; // [d1, d2, d3, d1, d2, d3]
 
-  const slideWidth = 100 / featuredDishes.length // Assuming 3 items visible at a time
+  const slideWidth = 100 / featuredDishes.length; // Assuming 3 items visible at a time
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -88,58 +106,61 @@ export default function FeaturedDishes() {
         // smoothly transition to the actual start (index 0)
         // then immediately snap back to the real start without transition
         if (prevIndex === featuredDishes.length) {
-          setIsTransitioning(false) // Disable transition for snap back
-          return 0 // Snap back to the first real item
+          setIsTransitioning(false); // Disable transition for snap back
+          return 0; // Snap back to the first real item
         }
-        setIsTransitioning(true) // Enable transition for normal slide
-        return prevIndex + 1
-      })
-    }, 5000) // Slide every 5 seconds
+        setIsTransitioning(true); // Enable transition for normal slide
+        return prevIndex + 1;
+      });
+    }, 5000); // Slide every 5 seconds
 
-    return () => clearInterval(interval)
-  }, [featuredDishes.length])
+    return () => clearInterval(interval);
+  }, [featuredDishes.length]); // Dependência corrigida aqui também para evitar loop infinito se o tamanho mudar
 
   // Handle the snap back after the transition
   useEffect(() => {
     if (currentIndex === 0 && !isTransitioning) {
       const timer = setTimeout(() => {
-        setIsTransitioning(true)
-      }, 50) // A small delay to ensure the transition is re-enabled after snap
-      return () => clearTimeout(timer)
+        setIsTransitioning(true);
+      }, 50); // A small delay to ensure the transition is re-enabled after snap
+      return () => clearTimeout(timer);
     }
-  }, [currentIndex, isTransitioning])
+  }, [currentIndex, isTransitioning]);
 
   const handlePrev = () => {
-    setIsTransitioning(true)
+    setIsTransitioning(true);
     setCurrentIndex((prevIndex) => {
       if (prevIndex === 0) {
         // If at the beginning, jump to the duplicated end, then slide back
-        setIsTransitioning(false)
-        return featuredDishes.length // Jump to the start of duplicated items
+        setIsTransitioning(false);
+        return featuredDishes.length; // Jump to the start of duplicated items
       }
-      return prevIndex - 1
-    })
-  }
+      return prevIndex - 1;
+    });
+  };
 
   const handleNext = () => {
-    setIsTransitioning(true)
+    setIsTransitioning(true);
     setCurrentIndex((prevIndex) => {
       if (prevIndex === featuredDishes.length) {
         // If at the end of real items (start of duplicated), jump to real start
-        setIsTransitioning(false)
-        return 0
+        setIsTransitioning(false);
+        return 0;
       }
-      return prevIndex + 1
-    })
-  }
+      return prevIndex + 1;
+    });
+  };
 
   return (
     <section className="py-16 bg-black">
       <div className="container mx-auto px-4">
         <div className="text-center mb-12">
-          <h2 className="text-4xl font-bold text-white mb-4">Pratos em Destaque</h2>
+          <h2 className="text-4xl font-bold text-white mb-4">
+            Pratos em Destaque
+          </h2>
           <p className="text-xl text-gray-300 max-w-2xl mx-auto">
-            Descubra nossos pratos mais populares, preparados com ingredientes frescos e técnicas tradicionais japonesas
+            Descubra nossos pratos mais populares, preparados com ingredientes
+            frescos e técnicas tradicionais japonesas
           </p>
         </div>
 
@@ -154,14 +175,15 @@ export default function FeaturedDishes() {
                 key={`${dish.id}-${index}`} // Unique key for duplicated items
                 className="flex-none w-full md:w-1/2 lg:w-1/3 p-4" // Adjust width for 3 visible items
               >
-                <div className="bg-black rounded-2xl shadow-lg overflow-hidden group border border-gray-700">
-                  <div className="relative">
+                <div className="bg-black rounded-2xl shadow-lg overflow-hidden group border border-gray-700 h-full flex flex-col">
+                  {/* Adicionei h-full e flex flex-col para garantir altura igual */}
+                  <div className="relative h-64 shrink-0">
+                    {/* Travei a altura da imagem */}
                     <Image
                       src={dish.image || "/placeholder.svg"}
                       alt={dish.name}
-                      width={400}
-                      height={300}
-                      className="w-full h-64 object-cover group-hover:scale-105 transition-transform duration-300"
+                      fill // Usei fill ao invés de width/height para responsividade melhor
+                      className="object-cover group-hover:scale-105 transition-transform duration-300"
                     />
                     {dish.isPopular && (
                       <div
@@ -181,26 +203,36 @@ export default function FeaturedDishes() {
                     </button>
                   </div>
 
-                  <div className="p-6">
+                  <div className="p-6 flex flex-col flex-grow">
                     <div className="flex items-center justify-between mb-2">
-                      <h3 className="text-xl font-bold text-white">{dish.name}</h3>
-                      <div className="flex items-center space-x-1">
+                      <h3 className="text-xl font-bold text-white line-clamp-1">
+                        {dish.name}
+                      </h3>
+                      <div className="flex items-center space-x-1 shrink-0">
                         <Star className="w-4 h-4 text-yellow-400 fill-current" />
-                        <span className="text-sm text-gray-300">{dish.rating}</span>
+                        <span className="text-sm text-gray-300">
+                          {dish.rating}
+                        </span>
                       </div>
                     </div>
 
-                    <p className="text-gray-400 mb-4">{dish.description}</p>
+                    <p className="text-gray-400 mb-4 line-clamp-3 flex-grow">
+                      {dish.description}
+                    </p>
 
-                    <div className="flex items-center justify-between">
+                    <div className="flex items-center justify-between mt-auto pt-4">
                       <div className="flex items-center space-x-2">
-                        <span className="text-2xl font-bold text-red-400">{dish.price}</span>
+                        <span className="text-2xl font-bold text-red-400">
+                          {dish.price}
+                        </span>
                         {dish.originalPrice && (
-                          <span className="text-lg text-gray-500 line-through">{dish.originalPrice}</span>
+                          <span className="text-lg text-gray-500 line-through">
+                            {dish.originalPrice}
+                          </span>
                         )}
                       </div>
                       <Button
-                        className="text-white shadow-lg relative overflow-hidden"
+                        className="text-white shadow-lg relative overflow-hidden shrink-0"
                         style={{
                           backgroundImage: "url('/sushi-pattern-bg.png')",
                           backgroundSize: "200px 200px",
@@ -243,5 +275,5 @@ export default function FeaturedDishes() {
         </div>
       </div>
     </section>
-  )
+  );
 }
