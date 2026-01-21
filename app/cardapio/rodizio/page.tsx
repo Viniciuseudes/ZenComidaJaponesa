@@ -74,7 +74,7 @@ const rodizioMenu: Record<string, RodizioItem[]> = {
       name: "Missoshiro",
       description:
         "Sopa de pasta de soja, cubos de queijo Tofu e cebolinha. Contém tempero de peixe.",
-      image: "/image_3f9b3a.jpg",
+      image: "/missoshiro.jpg",
     },
     {
       name: "Salada à Moda da Casa",
@@ -105,7 +105,7 @@ const rodizioMenu: Record<string, RodizioItem[]> = {
     {
       name: "Crocante de Peixe",
       description: "Massa crocante com pasta de peixe e cream cheese.",
-      image: "/image_3f9af6.jpg",
+      image: "/crocantepeixe.jpg",
     },
     {
       name: "Crocante do Chef",
@@ -115,12 +115,12 @@ const rodizioMenu: Record<string, RodizioItem[]> = {
     {
       name: "Harumaki",
       description: "Massa fina crocante.",
-      image: "/image_3f9ab9.jpg",
+      image: "/harumaki.jpg",
     },
     {
       name: "Kakiague",
       description: "Empanado de vegetais, camarão e molho do tentsuyu.",
-      image: "/image_3f9ab9.jpg",
+      image: "/harumaki1.jpg",
     },
     {
       name: "Guioza",
@@ -142,17 +142,17 @@ const rodizioMenu: Record<string, RodizioItem[]> = {
     {
       name: "Canapemaki",
       description: "Canapé Roll.",
-      image: "/image_3f96be.jpg",
+      image: "/canapemaki.jpg",
     },
     {
       name: "Tekkamaki",
       description: "Roll recheado de peixe e cream cheese.",
-      image: "/image_3f96be.jpg",
+      image: "/tekkamaki.jpg",
     },
     {
       name: "Tempura Roll",
       description: "Camarão empanado e cream cheese.",
-      image: "/image_3f96be.jpg",
+      image: "/tempura.jpg",
     },
     {
       name: "Uramaki Zen",
@@ -162,17 +162,17 @@ const rodizioMenu: Record<string, RodizioItem[]> = {
     {
       name: "Philadelphia",
       description: "Salmão, Atum, Pasta de Peixe, Joy.",
-      image: "/image_3f967f.jpg",
+      image: "/phila.jpg",
     },
     {
       name: "Uramaki Califórnia",
       description: "Manga, pepino e kani.",
-      image: "/image_3f967f.jpg",
+      image: "/california.jpg",
     },
     {
       name: "Cheese Crocante de Cebola",
       description: "Empanado de cebola e cream cheese.",
-      image: "/image_3f44e1.jpg",
+      image: "/cebola.jpg",
     },
     {
       name: "Cheese Crocante de Alho",
@@ -195,12 +195,12 @@ const rodizioMenu: Record<string, RodizioItem[]> = {
     {
       name: "Canapé Crock",
       description: "Roll crocante de kani, pasta de peixe e cebolinha.",
-      image: "/image_3f44a3.jpg",
+      image: "/canapecrock.jpg",
     },
     {
       name: "Crock Ebi",
       description: "Roll crocante de camarão, cream cheese e molho teriyaki.",
-      image: "/image_3f44a3.jpg",
+      image: "/crockebi.jpg",
     },
     {
       name: "Paulista",

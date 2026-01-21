@@ -1,9 +1,9 @@
-"use client";
+"use client"
 
-import { useState, useEffect } from "react";
-import Image from "next/image";
-import { Button } from "@/components/ui/button";
-import { ChevronLeft, ChevronRight, Play } from "lucide-react";
+import { useState, useEffect } from "react"
+import Image from "next/image"
+import { Button } from "@/components/ui/button"
+import { ChevronLeft, ChevronRight, Play } from "lucide-react"
 
 const heroSlides = [
   {
@@ -27,27 +27,25 @@ const heroSlides = [
     subtitle: "Experiência gastronômica única",
     cta: "Reservar Mesa",
   },
-];
+]
 
 export default function Hero() {
-  const [currentSlide, setCurrentSlide] = useState(0);
+  const [currentSlide, setCurrentSlide] = useState(0)
 
   useEffect(() => {
     const timer = setInterval(() => {
-      setCurrentSlide((prev) => (prev + 1) % heroSlides.length);
-    }, 5000);
-    return () => clearInterval(timer);
-  }, []);
+      setCurrentSlide((prev) => (prev + 1) % heroSlides.length)
+    }, 5000)
+    return () => clearInterval(timer)
+  }, [])
 
   const nextSlide = () => {
-    setCurrentSlide((prev) => (prev + 1) % heroSlides.length);
-  };
+    setCurrentSlide((prev) => (prev + 1) % heroSlides.length)
+  }
 
   const prevSlide = () => {
-    setCurrentSlide(
-      (prev) => (prev - 1 + heroSlides.length) % heroSlides.length,
-    );
-  };
+    setCurrentSlide((prev) => (prev - 1 + heroSlides.length) % heroSlides.length)
+  }
 
   return (
     <section className="relative h-screen overflow-hidden bg-black">
@@ -77,9 +75,7 @@ export default function Hero() {
             <h1 className="text-5xl md:text-7xl font-bold mb-6 animate-fade-in text-shadow-lg">
               {heroSlides[currentSlide].title}
             </h1>
-            <p className="text-xl md:text-2xl mb-8 opacity-90 text-shadow">
-              {heroSlides[currentSlide].subtitle}
-            </p>
+            <p className="text-xl md:text-2xl mb-8 opacity-90 text-shadow">{heroSlides[currentSlide].subtitle}</p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Button
                 size="lg"
@@ -91,9 +87,7 @@ export default function Hero() {
                 }}
               >
                 <div className="absolute inset-0 bg-red-600/90"></div>
-                <span className="relative z-10">
-                  {heroSlides[currentSlide].cta}
-                </span>
+                <span className="relative z-10">{heroSlides[currentSlide].cta}</span>
               </Button>
               <Button
                 size="lg"
@@ -129,13 +123,11 @@ export default function Hero() {
             key={index}
             onClick={() => setCurrentSlide(index)}
             className={`w-3 h-3 rounded-full transition-all ${
-              index === currentSlide
-                ? "bg-red-500 scale-125"
-                : "bg-white/50 hover:bg-white/70"
+              index === currentSlide ? "bg-red-500 scale-125" : "bg-white/50 hover:bg-white/70"
             }`}
           />
         ))}
       </div>
     </section>
-  );
+  )
 }
