@@ -5,15 +5,17 @@ import { ArrowLeft, ChefHat, Crown } from "lucide-react";
 import Link from "next/link";
 import { cn } from "@/lib/utils";
 
-// Tipo para os itens do menu
+// Tipo atualizado para suportar bio e foto do chef
 type RodizioItem = {
   name: string;
   description: string;
   image: string;
   chef?: string | null;
+  chefImage?: string | null;
+  chefBio?: string | null;
 };
 
-// Dados completos do menu do rodízio
+// DADOS DO MENU DO RODÍZIO PREMIUM ATUALIZADOS
 const rodizioMenu: Record<string, RodizioItem[]> = {
   "PRATOS PREMIUM": [
     {
@@ -68,7 +70,10 @@ const rodizioMenu: Record<string, RodizioItem[]> = {
       name: "Surpresa Zen",
       description:
         "Lâmina de peixe maçaricado, cream cheese, recheado com ebi skin, regado ao molho especial da casa.",
-      chef: null,
+      chef: "Auricélio Romão",
+      chefImage: "/auricelio.jpg",
+      chefBio:
+        "Auricélio Romão é um chef de cozinha renomado, conhecido por sua atuação em Fernando de Noronha, onde comanda os restaurantes Cacimba Bistrô e Casa do Auri. O chef oferece aos clientes uma experiência gastronômica diferenciada que celebra a criatividade e a sustentabilidade no uso de produtos locais.",
       image: "/image_3f9a5e.jpg",
     },
     {
@@ -76,6 +81,9 @@ const rodizioMenu: Record<string, RodizioItem[]> = {
       description:
         "Peixe branco empanado com farofa de camarão, acompanhado com salada especial de manga, cenoura e azeite.",
       chef: "Auricélio Romão",
+      chefImage: "/auricelio.jpg",
+      chefBio:
+        "Auricélio Romão é um chef de cozinha renomado, conhecido por sua atuação em Fernando de Noronha, onde comanda os restaurantes Cacimba Bistrô e Casa do Auri. O chef oferece aos clientes uma experiência gastronômica diferenciada que celebra a criatividade e a sustentabilidade no uso de produtos locais.",
       image: "/image_3f9a5e.jpg",
     },
     {
@@ -83,6 +91,9 @@ const rodizioMenu: Record<string, RodizioItem[]> = {
       description:
         "Tapioca com gergelim, tartar de salmão com um toque de wasabi e camarão.",
       chef: "César Santos",
+      chefImage: "/cesar.jpg",
+      chefBio:
+        "O chef César Santos é reconhecido no cenário gastronômico brasileiro, especialmente por sua inovação como chef do restaurante Oficina do Sabor, em Olinda. O seu trabalho como alquimista dos sabores valoriza a culinária nordestina, sempre buscando modernizar pratos tradicionais e agradando até os paladares mais exigentes.",
       image: "/image_3f9a5e.jpg",
     },
     {
@@ -90,6 +101,9 @@ const rodizioMenu: Record<string, RodizioItem[]> = {
       description:
         "Macarrão com calda de frutos do mar flambado, camarão e pimenta biquinho.",
       chef: "Felipe Barreto",
+      chefImage: "/felipe barreto.jpg",
+      chefBio:
+        "Felipe Barreto é o chef responsável pelos restaurantes da rede La Trattoria, a qual possui unidades distribuídas no nordeste brasileiro. Os seus pratos apresentam como referência a tradicional culinária italiana com influências contemporâneas, o que reflete na criação de pratos autênticos que oferecem uma excelente experiência sensorial.",
       image: "/image_3f975b.jpg",
     },
     {
@@ -97,6 +111,9 @@ const rodizioMenu: Record<string, RodizioItem[]> = {
       description:
         "Cubos de peixe maçaricado, sobre tartar de alga, batata-doce, regado a molho de ostra e teriyaki.",
       chef: "Kiko Selva",
+      chefImage: "/kiko.png",
+      chefBio:
+        "Kiko Selva é o chef do Il Tavolo Ristorranti, um prestigiado restaurante italiano localizado em Recife. Sua atuação no setor gastronômico está ligada à sua paixão pela culinária, especialmente pela cozinha italiana. Essa trajetória de sucesso reflete seu compromisso em oferecer uma experiência contemporânea, sofisticada e exclusiva aos seus clientes.",
       image: "/image_3f975b.jpg",
     },
   ],
@@ -374,7 +391,7 @@ export default function RodizioPremiumPage() {
                   "text-3xl font-bold text-white border-l-4 pl-4 mb-12",
                   category === "PRATOS PREMIUM"
                     ? "border-amber-400"
-                    : "border-red-500"
+                    : "border-red-500",
                 )}
               >
                 {category}
@@ -383,7 +400,7 @@ export default function RodizioPremiumPage() {
                 {items.map((item, index) => (
                   <div
                     key={item.name}
-                    className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12 items-center animate-fade-in"
+                    className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12 items-start animate-fade-in"
                   >
                     {/* Imagem do Prato */}
                     <div
@@ -392,7 +409,7 @@ export default function RodizioPremiumPage() {
                         index % 2 === 1 && "md:order-2",
                         category === "PRATOS PREMIUM"
                           ? "shadow-amber-900/20"
-                          : "shadow-red-900/10"
+                          : "shadow-red-900/10",
                       )}
                     >
                       <Image
@@ -414,24 +431,65 @@ export default function RodizioPremiumPage() {
                         </div>
                       )}
                     </div>
-                    {/* Descrição do Prato */}
+
+                    {/* Descrição do Prato & Chef */}
                     <div
                       className={cn(
-                        "flex flex-col",
-                        index % 2 === 1 && "md:order-1"
+                        "flex flex-col h-full justify-center",
+                        index % 2 === 1 && "md:order-1",
                       )}
                     >
                       <h3 className="text-3xl font-bold text-white mb-3">
                         {item.name}
                       </h3>
-                      <p className="text-gray-400 mb-4">{item.description}</p>
-                      {item.chef && (
+                      <p className="text-gray-400 mb-6 leading-relaxed">
+                        {item.description}
+                      </p>
+
+                      {/* CARD PREMIUM DO CHEF */}
+                      {item.chef && item.chefBio && item.chefImage && (
+                        <div className="mt-4 p-5 bg-zinc-900/40 border border-zinc-800 rounded-xl relative overflow-hidden group hover:border-red-900/50 transition-colors">
+                          <div className="flex items-start gap-4 relative z-10">
+                            <div className="relative w-16 h-16 shrink-0 rounded-full overflow-hidden border-2 border-red-500 shadow-lg">
+                              <Image
+                                src={item.chefImage}
+                                alt={item.chef}
+                                fill
+                                className="object-cover"
+                              />
+                            </div>
+                            <div>
+                              <p
+                                className={cn(
+                                  "text-xl mb-1",
+                                  category === "PRATOS PREMIUM"
+                                    ? "text-amber-400"
+                                    : "text-red-400",
+                                )}
+                                style={{
+                                  fontFamily: "var(--font-dancing-script)",
+                                }}
+                              >
+                                {item.chef}
+                              </p>
+                              <p className="text-xs text-zinc-400 leading-relaxed text-justify">
+                                {item.chefBio}
+                              </p>
+                            </div>
+                          </div>
+                          {/* Efeito decorativo */}
+                          <div className="absolute top-0 right-0 w-24 h-24 bg-white/5 rounded-full blur-2xl -translate-y-1/2 translate-x-1/2" />
+                        </div>
+                      )}
+
+                      {/* Fallback para itens sem bio (ex: pratos premium sem chef assinado na lista) */}
+                      {item.chef && !item.chefBio && (
                         <p
                           className={cn(
-                            "text-xl",
+                            "text-xl mt-2",
                             category === "PRATOS PREMIUM"
                               ? "text-amber-400"
-                              : "text-red-500"
+                              : "text-red-500",
                           )}
                           style={{ fontFamily: "var(--font-dancing-script)" }}
                         >
