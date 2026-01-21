@@ -5,7 +5,7 @@ import { ArrowLeft, ChefHat, Crown } from "lucide-react";
 import Link from "next/link";
 import { cn } from "@/lib/utils";
 
-// Tipo atualizado para suportar bio e foto do chef
+// TIPO ATUALIZADO
 type RodizioItem = {
   name: string;
   description: string;
@@ -15,7 +15,7 @@ type RodizioItem = {
   chefBio?: string | null;
 };
 
-// DADOS DO MENU DO RODÍZIO PREMIUM ATUALIZADOS
+// DADOS DO MENU (Mantidos idênticos)
 const rodizioMenu: Record<string, RodizioItem[]> = {
   "PRATOS PREMIUM": [
     {
@@ -362,22 +362,44 @@ export default function RodizioPremiumPage() {
         <div className="container mx-auto px-4 text-center">
           <Link
             href="/cardapio"
-            className="inline-flex items-center text-amber-400 hover:text-amber-300 mb-6"
+            className="inline-flex items-center text-amber-500 hover:text-amber-400 mb-6 transition-colors"
           >
             <ArrowLeft className="w-4 h-4 mr-2" />
             Voltar ao Cardápio
           </Link>
-          <h1 className="text-5xl font-bold font-horizont mb-4">
+          <h1 className="text-5xl md:text-6xl font-bold font-horizont mb-6 text-white tracking-wide">
             Rodízio Premium
           </h1>
-          <p className="text-xl text-gray-400 max-w-3xl mx-auto mb-8">
-            Uma experiência exclusiva com todos os itens do rodízio tradicional,
-            mais uma seleção de pratos premium criados pelo nosso chef.
+          <p className="text-lg md:text-xl text-zinc-400 max-w-2xl mx-auto mb-16 font-light leading-relaxed">
+            Uma seleção exclusiva para quem exige o máximo da gastronomia. Todos
+            os itens do rodízio tradicional somados a criações únicas do nosso
+            chef.
           </p>
-          <div className="inline-block bg-gray-900 border border-gray-800 rounded-lg px-6 py-3">
-            <span className="text-3xl font-bold text-amber-400">R$ 149,90</span>
-            <span className="text-gray-400"> por pessoa</span>
+
+          {/* PREÇIFICAÇÃO MINIMALISTA PREMIUM (CLEAN DESIGN) */}
+          <div className="max-w-2xl mx-auto border-t border-b border-zinc-900 py-12">
+            <div className="flex flex-col items-center justify-center text-center">
+              <h3 className="text-amber-500 font-medium tracking-[0.2em] text-xs uppercase mb-8 flex items-center gap-4">
+                SEGUNDA A DOMINGO
+              </h3>
+
+              <div className="w-full max-w-sm space-y-2">
+                <div className="flex justify-between items-baseline group">
+                  <span className="text-zinc-500 font-light text-lg group-hover:text-zinc-300 transition-colors">
+                    Almoço e Jantar
+                  </span>
+                  <div className="flex-1 mx-4 border-b border-dotted border-zinc-800 relative -top-1 opacity-50"></div>
+                  <span className="text-4xl text-white font-light tracking-wide">
+                    R$ 139,90
+                  </span>
+                </div>
+                <p className="text-xs text-zinc-600 text-right mt-2 font-light">
+                  *Inclui pratos exclusivos assinados pelos chefs
+                </p>
+              </div>
+            </div>
           </div>
+          {/* Fim da Preçificação */}
         </div>
       </section>
 
@@ -385,49 +407,51 @@ export default function RodizioPremiumPage() {
       <section className="py-24">
         <div className="container mx-auto px-4 max-w-5xl">
           {Object.entries(rodizioMenu).map(([category, items]) => (
-            <div key={category} className="mb-20">
-              <h2
-                className={cn(
-                  "text-3xl font-bold text-white border-l-4 pl-4 mb-12",
-                  category === "PRATOS PREMIUM"
-                    ? "border-amber-400"
-                    : "border-red-500",
-                )}
-              >
-                {category}
-              </h2>
-              <div className="space-y-16">
+            <div key={category} className="mb-24">
+              <div className="flex items-center gap-4 mb-12">
+                <div className="h-px bg-zinc-800 flex-1"></div>
+                <h2
+                  className={cn(
+                    "text-3xl font-light tracking-widest uppercase",
+                    category === "PRATOS PREMIUM"
+                      ? "text-amber-500"
+                      : "text-white",
+                  )}
+                >
+                  {category}
+                </h2>
+                <div className="h-px bg-zinc-800 flex-1"></div>
+              </div>
+
+              <div className="space-y-20">
                 {items.map((item, index) => (
                   <div
                     key={item.name}
-                    className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12 items-start animate-fade-in"
+                    className="grid grid-cols-1 md:grid-cols-2 gap-10 items-center animate-fade-in group"
                   >
                     {/* Imagem do Prato */}
                     <div
                       className={cn(
-                        "relative w-full aspect-[4/3] rounded-lg overflow-hidden shadow-2xl",
+                        "relative w-full aspect-[4/3] overflow-hidden rounded-sm transition-transform duration-700 ease-out",
                         index % 2 === 1 && "md:order-2",
-                        category === "PRATOS PREMIUM"
-                          ? "shadow-amber-900/20"
-                          : "shadow-red-900/10",
                       )}
                     >
                       <Image
                         src={item.image}
                         alt={item.name}
                         fill
-                        className="object-cover"
+                        className="object-cover transition-transform duration-700 group-hover:scale-105 opacity-90 group-hover:opacity-100"
                       />
+
+                      {/* Tags Minimalistas */}
                       {category === "PRATOS DOS CHEFS" && (
-                        <div className="absolute top-3 left-3 bg-red-600/90 text-white px-3 py-1 text-sm font-semibold rounded-full flex items-center gap-2">
-                          <ChefHat className="w-4 h-4" />
-                          <span>Do Chef</span>
+                        <div className="absolute top-4 left-4 bg-white/10 backdrop-blur-md border border-white/20 text-white px-3 py-1 text-xs font-medium tracking-wider uppercase">
+                          Signature
                         </div>
                       )}
                       {category === "PRATOS PREMIUM" && (
-                        <div className="absolute top-3 right-3 bg-black/50 text-amber-300 px-3 py-1 text-sm font-semibold rounded-full flex items-center gap-2 border border-amber-400/50 backdrop-blur-sm">
-                          <Crown className="w-4 h-4" />
-                          <span>Exclusivo Premium</span>
+                        <div className="absolute top-4 right-4 bg-black/40 backdrop-blur-md border border-amber-500/30 text-amber-400 px-3 py-1 text-xs font-medium tracking-wider uppercase flex items-center gap-2">
+                          <Crown className="w-3 h-3" /> Exclusive
                         </div>
                       )}
                     </div>
@@ -435,22 +459,52 @@ export default function RodizioPremiumPage() {
                     {/* Descrição do Prato & Chef */}
                     <div
                       className={cn(
-                        "flex flex-col h-full justify-center",
-                        index % 2 === 1 && "md:order-1",
+                        "flex flex-col justify-center",
+                        index % 2 === 1 && "md:order-1 text-right items-end",
                       )}
                     >
-                      <h3 className="text-3xl font-bold text-white mb-3">
+                      <h3
+                        className={cn(
+                          "text-3xl font-medium mb-4 transition-colors duration-300",
+                          category === "PRATOS PREMIUM"
+                            ? "text-white group-hover:text-amber-500"
+                            : "text-white group-hover:text-red-500",
+                        )}
+                      >
                         {item.name}
                       </h3>
-                      <p className="text-gray-400 mb-6 leading-relaxed">
+
+                      <div
+                        className={cn(
+                          "h-0.5 w-12 mb-6",
+                          category === "PRATOS PREMIUM"
+                            ? "bg-amber-600"
+                            : "bg-red-600",
+                          index % 2 === 1 && "ml-auto",
+                        )}
+                      />
+
+                      <p className="text-zinc-400 leading-relaxed font-light text-lg mb-8 max-w-md">
                         {item.description}
                       </p>
 
-                      {/* CARD PREMIUM DO CHEF */}
+                      {/* CARD DO CHEF - Minimalista e Discreto */}
                       {item.chef && item.chefBio && item.chefImage && (
-                        <div className="mt-4 p-5 bg-zinc-900/40 border border-zinc-800 rounded-xl relative overflow-hidden group hover:border-red-900/50 transition-colors">
-                          <div className="flex items-start gap-4 relative z-10">
-                            <div className="relative w-16 h-16 shrink-0 rounded-full overflow-hidden border-2 border-red-500 shadow-lg">
+                        <div
+                          className={cn(
+                            "mt-2 p-6 border-l-2 border-zinc-800 hover:border-red-900/50 transition-colors bg-gradient-to-r from-zinc-900/30 to-transparent",
+                            index % 2 === 1
+                              ? "border-l-0 border-r-2 text-right"
+                              : "text-left",
+                          )}
+                        >
+                          <div
+                            className={cn(
+                              "flex items-center gap-4 mb-3",
+                              index % 2 === 1 && "flex-row-reverse",
+                            )}
+                          >
+                            <div className="relative w-12 h-12 shrink-0 rounded-full overflow-hidden border border-zinc-700">
                               <Image
                                 src={item.chefImage}
                                 alt={item.chef}
@@ -460,35 +514,31 @@ export default function RodizioPremiumPage() {
                             </div>
                             <div>
                               <p
-                                className={cn(
-                                  "text-xl mb-1",
-                                  category === "PRATOS PREMIUM"
-                                    ? "text-amber-400"
-                                    : "text-red-400",
-                                )}
+                                className="text-xl text-white"
                                 style={{
                                   fontFamily: "var(--font-dancing-script)",
                                 }}
                               >
                                 {item.chef}
                               </p>
-                              <p className="text-xs text-zinc-400 leading-relaxed text-justify">
-                                {item.chefBio}
-                              </p>
+                              <span className="text-xs text-red-500 uppercase tracking-widest font-semibold">
+                                Chef Executivo
+                              </span>
                             </div>
                           </div>
-                          {/* Efeito decorativo */}
-                          <div className="absolute top-0 right-0 w-24 h-24 bg-white/5 rounded-full blur-2xl -translate-y-1/2 translate-x-1/2" />
+                          <p className="text-xs text-zinc-500 leading-relaxed max-w-sm italic">
+                            "{item.chefBio.substring(0, 120)}..."
+                          </p>
                         </div>
                       )}
 
-                      {/* Fallback para itens sem bio (ex: pratos premium sem chef assinado na lista) */}
+                      {/* Fallback */}
                       {item.chef && !item.chefBio && (
                         <p
                           className={cn(
-                            "text-xl mt-2",
+                            "text-xl mt-2 opacity-80",
                             category === "PRATOS PREMIUM"
-                              ? "text-amber-400"
+                              ? "text-amber-500"
                               : "text-red-500",
                           )}
                           style={{ fontFamily: "var(--font-dancing-script)" }}
