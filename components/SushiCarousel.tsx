@@ -25,7 +25,7 @@ const sushiImages = [
 
 export default function SushiCarousel() {
   const plugin = React.useRef(
-    Autoplay({ delay: 2500, stopOnInteraction: true })
+    Autoplay({ delay: 2500, stopOnInteraction: true }),
   );
 
   return (
@@ -41,7 +41,6 @@ export default function SushiCarousel() {
           </p>
         </div>
         <Carousel
-          // A afirmação de tipo "as any" resolve o problema de tipagem
           plugins={[plugin.current as any]}
           opts={{
             align: "start",
@@ -55,12 +54,18 @@ export default function SushiCarousel() {
                 <div className="p-1">
                   <Card className="border-gray-800 bg-black overflow-hidden group">
                     <CardContent className="relative flex aspect-square items-center justify-center p-0">
+                      {/* OTIMIZAÇÃO DE PERFORMANCE AQUI */}
                       <Image
                         src={image.src}
                         alt={image.alt}
                         fill
+                        // 1. Diga ao navegador qual tamanho baixar dependendo da tela
+                        sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                         className="object-cover transition-transform duration-500 ease-in-out group-hover:scale-105"
-                        quality={90}
+                        // 2. Qualidade 80 é o "sweet spot" entre leveza e nitidez
+                        quality={80}
+                        // 3. Carrega as primeiras 3 imagens imediatamente (priority), o resto sob demanda
+                        priority={index < 3}
                       />
                       <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent"></div>
                     </CardContent>

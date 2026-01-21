@@ -54,14 +54,14 @@ const rodizioMenu: Record<string, RodizioItem[]> = {
     {
       name: "Tataki de Atum",
       description: "Atum marinado no molho shoyu, gengibre e gergelim.",
-      image: "/tatakiatum.png",
+      image: "/tatakiatum.jpg",
       chef: null,
     },
     {
       name: "Ebi Joy",
       description:
         "Enrolado de arroz com lâmina de salmão, cream cheese e camarão maçaricado.",
-      image: "/ebijoy.png",
+      image: "/eby.png",
       chef: null,
     },
   ],
@@ -74,7 +74,7 @@ const rodizioMenu: Record<string, RodizioItem[]> = {
       chefImage: "/auricelio.jpg",
       chefBio:
         "Auricélio Romão é um chef de cozinha renomado, conhecido por sua atuação em Fernando de Noronha, onde comanda os restaurantes Cacimba Bistrô e Casa do Auri. O chef oferece aos clientes uma experiência gastronômica diferenciada que celebra a criatividade e a sustentabilidade no uso de produtos locais.",
-      image: "/image_3f9a5e.jpg",
+      image: "/surpresazen.jpg",
     },
     {
       name: "Mar de Noronha",
@@ -84,7 +84,7 @@ const rodizioMenu: Record<string, RodizioItem[]> = {
       chefImage: "/auricelio.jpg",
       chefBio:
         "Auricélio Romão é um chef de cozinha renomado, conhecido por sua atuação em Fernando de Noronha, onde comanda os restaurantes Cacimba Bistrô e Casa do Auri. O chef oferece aos clientes uma experiência gastronômica diferenciada que celebra a criatividade e a sustentabilidade no uso de produtos locais.",
-      image: "/image_3f9a5e.jpg",
+      image: "/mardenoronha.jpg",
     },
     {
       name: "Viva ao Zen",
@@ -94,27 +94,27 @@ const rodizioMenu: Record<string, RodizioItem[]> = {
       chefImage: "/cesar.jpg",
       chefBio:
         "O chef César Santos é reconhecido no cenário gastronômico brasileiro, especialmente por sua inovação como chef do restaurante Oficina do Sabor, em Olinda. O seu trabalho como alquimista dos sabores valoriza a culinária nordestina, sempre buscando modernizar pratos tradicionais e agradando até os paladares mais exigentes.",
-      image: "/image_3f9a5e.jpg",
+      image: "/viva.jpg",
     },
     {
       name: "Luxo Instantâneo",
       description:
         "Macarrão com calda de frutos do mar flambado, camarão e pimenta biquinho.",
       chef: "Felipe Barreto",
-      chefImage: "/felipe barreto.jpg",
+      chefImage: "/felipe.jpg",
       chefBio:
         "Felipe Barreto é o chef responsável pelos restaurantes da rede La Trattoria, a qual possui unidades distribuídas no nordeste brasileiro. Os seus pratos apresentam como referência a tradicional culinária italiana com influências contemporâneas, o que reflete na criação de pratos autênticos que oferecem uma excelente experiência sensorial.",
-      image: "/image_3f975b.jpg",
+      image: "/luxo.jpg",
     },
     {
       name: "Petit Tranche",
       description:
         "Cubos de peixe maçaricado, sobre tartar de alga, batata-doce, regado a molho de ostra e teriyaki.",
       chef: "Kiko Selva",
-      chefImage: "/kiko.png",
+      chefImage: "/kiko.PNG",
       chefBio:
         "Kiko Selva é o chef do Il Tavolo Ristorranti, um prestigiado restaurante italiano localizado em Recife. Sua atuação no setor gastronômico está ligada à sua paixão pela culinária, especialmente pela cozinha italiana. Essa trajetória de sucesso reflete seu compromisso em oferecer uma experiência contemporânea, sofisticada e exclusiva aos seus clientes.",
-      image: "/image_3f975b.jpg",
+      image: "/petit.png",
     },
   ],
   ENTRADAS: [
@@ -134,26 +134,26 @@ const rodizioMenu: Record<string, RodizioItem[]> = {
     {
       name: "Mini Sunomono",
       description: "Pepino agridoce com mix de gergelim.",
-      image: "/image_3f9b3a.jpg",
+      image: "/sunomono.jpg",
       chef: null,
     },
     {
       name: "Ceviche",
       description: "Cubos de peixes, marinados no leite de tigre.",
-      image: "/image_3f9b3a.jpg",
+      image: "/CEVICHE.png",
       chef: null,
     },
     {
       name: "Pastel Zen",
       description:
         "Recheado com carne, azeitona e champignon, empanado no panko. Acompanhado de molho de ervas finas.",
-      image: "/image_3f9af6.jpg",
+      image: "/PASTEL.png",
       chef: null,
     },
     {
       name: "Frango ao Zen",
       description: "Cubos de frango empanados. Acompanhado de molho Zen.",
-      image: "/image_3f9af6.jpg",
+      image: "/frango.jpg",
       chef: null,
     },
     {
@@ -165,7 +165,7 @@ const rodizioMenu: Record<string, RodizioItem[]> = {
     {
       name: "Crocante do Chef",
       description: "Roll crocante de kani, pasta de peixe e cebolinha.",
-      image: "/image_3f9af6.jpg",
+      image: "/crocantechef.jpg",
       chef: null,
     },
     {
@@ -183,13 +183,13 @@ const rodizioMenu: Record<string, RodizioItem[]> = {
     {
       name: "Guioza",
       description: "Preparada no vapor e finalizada na chapa.",
-      image: "/image_3f9ab9.jpg",
+      image: "/guioza.jpg",
       chef: null,
     },
     {
       name: "Mini Robata",
       description: "Espeto com molho especial.",
-      image: "/image_3f9ab9.jpg",
+      image: "/Robata.jpg",
       chef: null,
     },
   ],
@@ -197,7 +197,7 @@ const rodizioMenu: Record<string, RodizioItem[]> = {
     {
       name: "Maguro Perfumado",
       description: "Atum maçaricado e regados ao azeite de ervas finas.",
-      image: "/image_3f96be.jpg",
+      image: "/maguro.jpg",
       chef: null,
     },
     {
@@ -245,7 +245,7 @@ const rodizioMenu: Record<string, RodizioItem[]> = {
     {
       name: "Cheese Crocante de Alho",
       description: "Empanado de alho e cream cheese.",
-      image: "/image_3f44e1.jpg",
+      image: "/alho.jpg",
       chef: null,
     },
     {
@@ -260,7 +260,7 @@ const rodizioMenu: Record<string, RodizioItem[]> = {
     {
       name: "Kami Zen",
       description: "Banana crocante, bacalhau, molho aioli e azeite de ervas.",
-      image: "/image_3f44a3.jpg",
+      image: "/KAMI.png",
       chef: null,
     },
     {
@@ -299,13 +299,13 @@ const rodizioMenu: Record<string, RodizioItem[]> = {
       name: "Atsumaki",
       description:
         "Hossomaki recheado de salmão e cream cheese, empanado em crosta de gergelim.",
-      image: "/image_3f9714.jpg",
+      image: "/atsumaki.jpg",
       chef: null,
     },
     {
       name: "Carioca",
       description: "Roll empanado de salmão e cream cheese.",
-      image: "/image_3f38de.jpg",
+      image: "/carioca.jpg",
       chef: null,
     },
     {
@@ -332,14 +332,14 @@ const rodizioMenu: Record<string, RodizioItem[]> = {
       name: "Sashimis",
       description:
         "Salmão, Atum, Peixe Branco, Camarão, Polvo. Mínimo 02 opções e no máximo 04.",
-      image: "/image_3f35ff.jpg",
+      image: "/sashimi2.jpg",
       chef: null,
     },
     {
       name: "Niguiri",
       description:
         "Salmão, Atum, Peixe Branco, Camarão, Kani, Skin, Peixe Branco Grelhado.",
-      image: "/image_3f35ff.jpg",
+      image: "/rodizio1.jpg",
       chef: null,
     },
   ],
@@ -348,7 +348,7 @@ const rodizioMenu: Record<string, RodizioItem[]> = {
       name: "Temakis Variados",
       description:
         "Opções diversas como Salmão, Atum, Kani, Vegetariano, e criações especiais.",
-      image: "/image_3f35bf.jpg",
+      image: "/temaki.jpg",
       chef: null,
     },
   ],
@@ -446,7 +446,7 @@ export default function RodizioPremiumPage() {
                       {/* Tags Minimalistas */}
                       {category === "PRATOS DOS CHEFS" && (
                         <div className="absolute top-4 left-4 bg-white/10 backdrop-blur-md border border-white/20 text-white px-3 py-1 text-xs font-medium tracking-wider uppercase">
-                          Signature
+                          Assinatura
                         </div>
                       )}
                       {category === "PRATOS PREMIUM" && (
@@ -527,7 +527,7 @@ export default function RodizioPremiumPage() {
                             </div>
                           </div>
                           <p className="text-xs text-zinc-500 leading-relaxed max-w-sm italic">
-                            "{item.chefBio.substring(0, 120)}..."
+                            "{item.chefBio.substring(0, 600)}..."
                           </p>
                         </div>
                       )}

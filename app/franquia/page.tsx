@@ -143,7 +143,7 @@ export default function FranquiaPage() {
   const handleChange = (
     e: React.ChangeEvent<
       HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement
-    >
+    >,
   ) => {
     setFormData({
       ...formData,
@@ -179,14 +179,6 @@ export default function FranquiaPage() {
                 className="text-white text-lg px-8 py-4 shadow-2xl bg-white/20 backdrop-blur-sm border-2 border-white/80 hover:bg-white hover:text-gray-900"
               >
                 Quero Ser Franqueado
-              </Button>
-              <Button
-                size="lg"
-                variant="outline"
-                className="border-2 border-white/80 text-white hover:bg-white hover:text-gray-900 text-lg px-8 py-4 bg-black/20 backdrop-blur-sm"
-              >
-                <Play className="w-5 h-5 mr-2" />
-                Assistir Vídeo
               </Button>
             </div>
           </div>
