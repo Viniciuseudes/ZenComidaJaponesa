@@ -177,7 +177,7 @@ const rodizioMenu: Record<string, RodizioItem[]> = {
     {
       name: "Kakiague",
       description: "Empanado de vegetais, camarão e molho do tentsuyu.",
-      image: "/harumaki1.jpg",
+      image: "/kakiague.jpg",
       chef: null,
     },
     {

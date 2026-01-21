@@ -73,7 +73,7 @@ const menuData: MenuData = {
         name: "Kakiague",
         description:
           "PORÇÃO 4 UNIDADES | Camarão e vegetais selecionados ao molho tentsuyu cream.",
-        image: "/image_4012de.jpg",
+        image: "/kakiague.jpg",
       },
     ],
   },

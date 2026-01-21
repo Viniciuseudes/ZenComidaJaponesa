@@ -120,7 +120,7 @@ const rodizioMenu: Record<string, RodizioItem[]> = {
     {
       name: "Kakiague",
       description: "Empanado de vegetais, camarão e molho do tentsuyu.",
-      image: "/harumaki1.jpg",
+      image: "/kakiague.jpg",
     },
     {
       name: "Guioza",
@@ -234,12 +234,12 @@ const rodizioMenu: Record<string, RodizioItem[]> = {
     {
       name: "Carioca de Salmão e Morango",
       description: "Roll empanado de salmão, morango e cream cheese.",
-      image: "/image_3f38de.jpg",
+      image: "/salmorango.jpg",
     },
     {
       name: "Romeu e Julieta",
       description: "Roll empanado de goiabada e cream cheese.",
-      image: "/image_3f38de.jpg",
+      image: "/romeu.jpg",
     },
     {
       name: "Cartola",
