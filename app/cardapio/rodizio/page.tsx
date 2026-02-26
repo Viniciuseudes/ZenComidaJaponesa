@@ -89,7 +89,7 @@ const rodizioMenu: Record<string, RodizioItem[]> = {
     {
       name: "Ceviche",
       description: "Cubos de peixes, marinados no leite de tigre.",
-      image: "/CEVICHE.PNG",
+      image: "/CEVICHE.png",
     },
     {
       name: "Pastel Zen",
@@ -247,13 +247,13 @@ const rodizioMenu: Record<string, RodizioItem[]> = {
       image: "/image_3f38de.jpg",
     },
   ],
-  "SASHIMIS | NIGUIRIS": [
-    {
+  NIGUIRIS: [
+    /*{
       name: "Sashimis",
       description:
         "Salmão, Atum, Peixe Branco, Camarão, Polvo. Mínimo 02 opções e no máximo 04.",
       image: "/sashimi2.jpg",
-    },
+    },*/
     {
       name: "Niguiri",
       description:

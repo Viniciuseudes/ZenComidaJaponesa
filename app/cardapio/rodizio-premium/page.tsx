@@ -327,14 +327,14 @@ const rodizioMenu: Record<string, RodizioItem[]> = {
       chef: null,
     },
   ],
-  "SASHIMIS | NIGUIRIS": [
-    {
+  " NIGUIRIS": [
+    /*{
       name: "Sashimis",
       description:
         "Salmão, Atum, Peixe Branco, Camarão, Polvo. Mínimo 02 opções e no máximo 04.",
       image: "/sashimi2.jpg",
       chef: null,
-    },
+    },*/
     {
       name: "Niguiri",
       description:
