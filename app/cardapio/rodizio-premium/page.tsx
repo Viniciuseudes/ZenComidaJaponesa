@@ -15,7 +15,7 @@ type RodizioItem = {
   chefBio?: string | null;
 };
 
-// DADOS DO MENU (Mantidos idênticos)
+// DADOS DO MENU
 const rodizioMenu: Record<string, RodizioItem[]> = {
   "PRATOS PREMIUM": [
     {
@@ -62,6 +62,37 @@ const rodizioMenu: Record<string, RodizioItem[]> = {
       description:
         "Enrolado de arroz com lâmina de salmão, cream cheese e camarão maçaricado.",
       image: "/eby.png",
+      chef: null,
+    },
+    // NOVOS PRATOS ADICIONADOS AQUI:
+    {
+      name: "Carpaccio de Salmão",
+      description: "Defumado no fogo, com molho cítrico.",
+      image: "/carpacciodesalmao.png",
+      chef: null,
+    },
+    {
+      name: "Sashimi de Salmão",
+      description: "Maçaricado ao molho de ervas com flor de sal.",
+      image: "/sashimimac.png",
+      chef: null,
+    },
+    {
+      name: "Shake Zen",
+      description: "Salmão em cubos com queijo brie.",
+      image: "/shakezen.png",
+      chef: null,
+    },
+    {
+      name: "Uzusukuri",
+      description: "De salmão, atum e peixe branco.",
+      image: "/ussuzukuri.png",
+      chef: null,
+    },
+    {
+      name: "Régua com 6 Niguiris",
+      description: "Especiais.",
+      image: "/eguaniguirisespeciais.png",
       chef: null,
     },
   ],
@@ -328,13 +359,6 @@ const rodizioMenu: Record<string, RodizioItem[]> = {
     },
   ],
   " NIGUIRIS": [
-    /*{
-      name: "Sashimis",
-      description:
-        "Salmão, Atum, Peixe Branco, Camarão, Polvo. Mínimo 02 opções e no máximo 04.",
-      image: "/sashimi2.jpg",
-      chef: null,
-    },*/
     {
       name: "Niguiri",
       description:
@@ -367,9 +391,12 @@ export default function RodizioPremiumPage() {
             <ArrowLeft className="w-4 h-4 mr-2" />
             Voltar ao Cardápio
           </Link>
+
+          {/* TÍTULO ALTERADO PARA TESTE */}
           <h1 className="text-5xl md:text-6xl font-bold font-horizont mb-6 text-white tracking-wide">
-            Rodízio Premium
+            Rodízio TESTE
           </h1>
+
           <p className="text-lg md:text-xl text-zinc-400 max-w-2xl mx-auto mb-16 font-light leading-relaxed">
             Uma seleção exclusiva para quem exige o máximo da gastronomia. Todos
             os itens do rodízio tradicional somados a criações únicas do nosso
