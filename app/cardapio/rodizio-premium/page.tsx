@@ -390,7 +390,7 @@ export default function RodizioPremiumPage() {
                   </span>
                   <div className="flex-1 mx-4 border-b border-dotted border-zinc-800 relative -top-1 opacity-50"></div>
                   <span className="text-4xl text-white font-light tracking-wide">
-                    R$ 139,90
+                    R$ 149,90
                   </span>
                 </div>
                 <p className="text-xs text-zinc-600 text-right mt-2 font-light">
